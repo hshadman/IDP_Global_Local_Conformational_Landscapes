@@ -10,7 +10,7 @@ The below two jupyter notebook files provide code to generate plots of conformat
 1. _global_conf_landscape_map.ipynb_: Provides code with examples to generate scatter plots of global ensembles.
 2. _subchain_code_with_examples.ipynb_: Provides code with examples to generate _R<sub>s</sub>_ and _RSA_ plots at the local (subchain) level
 
-Two human IDR simulation files are used as examples, taken from https://www.nature.com/articles/s41586-023-07004-5.
+Two human IDR simulationd are used as examples, taken from https://www.nature.com/articles/s41586-023-07004-5. 
 
 _ete1.npy_ and _ete2.npy_ provide end-to-end distance values for the two IDR simulation trajectories.
 
