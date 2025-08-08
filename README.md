@@ -10,7 +10,7 @@ The below two jupyter notebook files provide code to generate plots of conformat
 1. _global_conf_landscape_map.ipynb_: Provides code with examples to generate scatter plots of global ensembles.
 2. _subchain_code_with_examples.ipynb_: Provides code with examples to generate _R<sub>s</sub>_ and _RSA_ plots at the local (subchain) level
 
-Two IDR simulation files are used as examples, taken from https://www.nature.com/articles/s41586-023-07004-5.
+Two human IDR simulation files are used as examples, taken from https://www.nature.com/articles/s41586-023-07004-5.
 
 _ete1.npy_ and _ete2.npy_ provide end-to-end distance values for the two IDR simulation trajectories.
 
@@ -20,9 +20,9 @@ _traj1.xtc_ and _traj2.xtc_ -> trajectory files for the two IDR simulations.
 
 _top1.pdb_ and _top2.pdb_ -> topology files for the two IDR simulations.
 
-_IDR_fasta_sequences.csv_ provides fasta sequences for all the IDRs (published by https://www.nature.com/articles/s41586-023-07004-5).
+_IDR_fasta_sequences.csv_ provides fasta sequences for all the human IDRs (published by https://www.nature.com/articles/s41586-023-07004-5).
 
-_IDR_nu_values.csv_ provides ν values for all the IDRs (published by https://www.nature.com/articles/s41586-023-07004-5).
+_IDR_nu_values.csv_ provides ν values for all the human IDRs (published by https://www.nature.com/articles/s41586-023-07004-5).
 
 We use the conformational ensembles of the Gaussian Walk (GW) polymer model as a reference for the ensembles of other proteins and polymers. The GW file used in these examples (reference_GW_chainlen_100_for_RSA.csv) can be downloaded from Zenodo. 
 
