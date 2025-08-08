@@ -8,7 +8,7 @@ For a given intrinsically disordered protein (IDP) or region (IDR) of a protein,
 The below two jupyter notebook files provide code to generate plots of conformational ensembles.
 
 1. _global_conf_landscape_map.ipynb_: Provides code with examples to generate scatter plots of global ensembles.
-2. _subchain_code_with_examples.ipynb_: Provides code with examples to generate _R<sub>s</sub>_ and _RSA_ plots at the local (subchain) level
+2. _subchain_code_with_examples.ipynb_: Provides code with examples to generate _R<sub>s</sub>_ and _RSA_ plots at the local (subchain) level.
 
 Two human IDR simulations, taken from https://www.nature.com/articles/s41586-023-07004-5, are used as examples. 
 
