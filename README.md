@@ -1,16 +1,16 @@
 
 # Examine Global and Local Conformational Landscapes of Intrinsically Disordered Proteins or Polymers Using Polymer Physics Quantities
 
-## This repository provides code to generate plots of instantaneous shape ratio (_R<sub>s</sub>_) and relative shape anisotropy (_RSA_). These quantities have previously been defined in this publication: https://www.cell.com/biophysj/fulltext/S0006-3495(24)00272-8  
+## This repository provides code to generate plots of instantaneous shape ratio (_R<sub>s</sub>_) and relative shape anisotropy (_RSA_). These shape parameters have previously been defined in this publication: https://www.cell.com/biophysj/fulltext/S0006-3495(24)00272-8  
 
-For a given intrinsically disordered protein (IDP) or region (IDR) of a protein, the global (i.e. whole chain) conformational ensembles can be examined by generating a scatter plot of _R<sub>s</sub>_ against _RSA_ of the entire chain under consideration. For the same chain, local conformational ensembles can be examined by setting a moving/sliding window across the chain and monitoring _R<sub>s</sub>_ and _RSA_ for each subchain.
+For a given intrinsically disordered protein (IDP) or region (IDR) of a protein, the global (i.e. whole chain) conformational ensembles can be examined by generating a scatter plot of _R<sub>s</sub>_ against _RSA_ of the full chain. For the same chain, local conformational ensembles can be examined through a moving/sliding window across the chain and monitoring _R<sub>s</sub>_ and _RSA_ for each subchain.
 
 The below two jupyter notebook files provide code to generate plots of conformational ensembles.
 
 1. _global_conf_landscape_map.ipynb_: Provides code with examples to generate scatter plots of global ensembles.
-2. _subchain_code_with_examples.ipynb_: Provides code with examples to examine _R<sub>s</sub>_ and _RSA_ plots at the local (subchain) level
+2. _subchain_code_with_examples.ipynb_: Provides code with examples to generate _R<sub>s</sub>_ and _RSA_ plots at the local (subchain) level
 
-Two IDR simulation files are used as examples, taken from https://www.nature.com/articles/s41586-023-07004-5#Sec3.
+Two IDR simulation files are used as examples, taken from https://www.nature.com/articles/s41586-023-07004-5.
 
 ete1.npy and ete2.npy provide end-to-end distance values for the two IDR simulation trajectories.
 
