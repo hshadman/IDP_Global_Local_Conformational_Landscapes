@@ -24,6 +24,6 @@ _IDR_fasta_sequences.csv_ provides fasta sequences for all the human IDRs (publi
 
 _IDR_nu_values.csv_ provides ν values for all the human IDRs (published by https://www.nature.com/articles/s41586-023-07004-5).
 
-We use the conformational ensembles of the Gaussian Walk (GW) polymer model as a reference for the ensembles of other proteins and polymers. The GW file used in these examples (reference_GW_chainlen_100_for_RSA.csv) can be downloaded from Zenodo. 
+We use the conformational ensembles of the Gaussian Walk (GW) polymer model (https://www.cell.com/biophysj/fulltext/S0006-3495(24)00272-8) as a reference for the ensembles of other proteins and polymers. The GW file used in these examples (reference_GW_chainlen_100_for_RSA.csv) can be downloaded from Zenodo. 
 
 The code here can be easily adapted for any protein/polymer chain. 
