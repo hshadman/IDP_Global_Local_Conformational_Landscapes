@@ -12,9 +12,13 @@ The below two jupyter notebook files provide code to generate plots of conformat
 
 Two IDR simulation files are used as examples, taken from https://www.nature.com/articles/s41586-023-07004-5#Sec3.
 
-### ete1.npy and ete2.npy provide end-to-end distance values for the two IDR simulation trajectories. 
-### rg1.npy and rg2.npy provide radius of gyration for the two IDR simulation trajectories.
-### traj1.xtc and traj2.xtc -> trajectory files for the two IDR simulations.
-### top1.pdb and top2.pdb -> topology files for the two IDR simulations.
+ete1.npy and ete2.npy provide end-to-end distance values for the two IDR simulation trajectories.
+
+rg1.npy and rg2.npy provide radius of gyration for the two IDR simulation trajectories.
+
+traj1.xtc and traj2.xtc -> trajectory files for the two IDR simulations.
+
+top1.pdb and top2.pdb -> topology files for the two IDR simulations.
+
 
 We use the conformational ensembles of the Gaussian Walk (GW) polymer model as a reference for the ensembles of other proteins and polymers. The GW file used in these examples (reference_GW_chainlen_100_for_RSA.csv) can be downloaded from this OneDrive link: 
