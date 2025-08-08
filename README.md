@@ -1,5 +1,5 @@
 
-# Examine Local and Global Conformatioal Landscapes of Intrinsically Disordered Proteins or Polymers Using Polymer Physics Quantities
+# Examine Global and Local Conformational Landscapes of Intrinsically Disordered Proteins or Polymers Using Polymer Physics Quantities
 
 ## This repository provides code to generate plots of instantaneous shape ratio (_R<sub>s</sub>_) and relative shape anisotropy (_RSA_). These quantities have previously been defined in this publication: https://www.cell.com/biophysj/fulltext/S0006-3495(24)00272-8  
 
