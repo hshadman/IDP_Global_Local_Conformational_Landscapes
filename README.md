@@ -21,4 +21,4 @@ traj1.xtc and traj2.xtc -> trajectory files for the two IDR simulations.
 top1.pdb and top2.pdb -> topology files for the two IDR simulations.
 
 
-We use the conformational ensembles of the Gaussian Walk (GW) polymer model as a reference for the ensembles of other proteins and polymers. The GW file used in these examples (reference_GW_chainlen_100_for_RSA.csv) can be downloaded from this OneDrive link: 
+We use the conformational ensembles of the Gaussian Walk (GW) polymer model as a reference for the ensembles of other proteins and polymers. The GW file used in these examples (reference_GW_chainlen_100_for_RSA.csv) can be downloaded from Zenodo. 
