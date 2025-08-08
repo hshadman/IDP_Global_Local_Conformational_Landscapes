@@ -3,7 +3,7 @@
 
 ## This repository provides code to generate plots of instantaneous shape ratio (_R<sub>s</sub>_) and relative shape anisotropy (_RSA_). These shape parameters have previously been defined in this publication: https://www.cell.com/biophysj/fulltext/S0006-3495(24)00272-8  
 
-For a given intrinsically disordered protein (IDP) or region (IDR) of a protein, the global (i.e. whole chain) conformational ensembles can be examined by generating a scatter plot of _R<sub>s</sub>_ against _RSA_ of the full chain. For the same chain, local conformational ensembles can be examined through a moving/sliding window across the chain and monitoring _R<sub>s</sub>_ and _RSA_ for each subchain.
+For a given intrinsically disordered protein (IDP) or region (IDR) of a protein, the global (i.e. whole chain) conformational ensembles can be examined by generating a scatter plot of _R<sub>s</sub>_ against _RSA_ of the full chain. For the same chain, local conformational ensembles can be examined by using a moving/sliding window across the chain and monitoring _R<sub>s</sub>_ and _RSA_ for each subchain.
 
 The below two jupyter notebook files provide code to generate plots of conformational ensembles.
 
