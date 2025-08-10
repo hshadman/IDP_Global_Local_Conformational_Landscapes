@@ -26,5 +26,5 @@ _IDR_nu_values.csv_ provides ν values for all the human IDRs (published: https:
 
 We use the conformational ensembles of the Gaussian Walk (GW) polymer model (https://www.cell.com/biophysj/fulltext/S0006-3495(24)00272-8) as a reference for the ensembles of other proteins and polymers. The GW file used in these examples (reference_GW_chainlen_100_for_RSA.csv) can be downloaded from Zenodo. The code to conduct GW simulations is provided in a different repository (https://github.com/hshadman/2d_conformational_landscape_map). 
 
-Though the code here was mainly intended to analyze a publicly available human IDR-ome dataset (https://www.nature.com/articles/s41586-023-07004-5),it can  be easily adapted for any protein/polymer chain.
+Though the code here was mainly intended to analyze a publicly available human IDR-ome dataset (https://www.nature.com/articles/s41586-023-07004-5), it can  be easily adapted for any protein/polymer chain.
 
