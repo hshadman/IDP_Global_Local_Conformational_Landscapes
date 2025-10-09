@@ -31,3 +31,13 @@ Issues   = "https://github.com/hshadman/IDP_Global_Local_Conformational_Landscap
 include = [
   "src/pyheteromap/reference_GW_chainlength_100.csv",
 ]
+[tool.hatch.build.targets.wheel]
+packages = ["src/pyheteromap"]
+
+[tool.hatch.build.targets.sdist]
+include = [
+  "src/pyheteromap",
+  "README.md",
+  "LICENSE",
+  "pyproject.toml",
+]
