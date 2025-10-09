@@ -2,6 +2,7 @@ import pandas as pd
 import mdtraj as md
 import numpy as np
 import os
+DEFAULT_GW_CSV = os.path.join(os.path.dirname(__file__), "reference_GW_chainlength_100.csv")
 import afrc
 from numpy import linalg as la
 from scipy.optimize import curve_fit
@@ -15,7 +16,7 @@ import random as rd
 
 class PyHeteroMap:
     def __init__(self,seq_name,
-             gw_reference_csv="../segmented_chain_project/reference_GW_chainlen_100_for_RSA.csv",
+             gw_reference_csv=DEFAULT_GW_CSV,
              traj_file_dir=None, prmtop_file_dir=None,
              skip_frames=10,
              afrc_returns_angstrom=True):

@@ -25,5 +25,9 @@ dependencies = [
 "biopython>=1.83"
 ]
 [project.urls]
-Homepage = "https://github.com/<your-username>/<your-repo>"
-Issues   = "https://github.com/<your-username>/<your-repo>/issues"
+Homepage = "https://github.com/hshadman/IDP_Global_Local_Conformational_Landscapes"
+Issues   = "https://github.com/hshadman/IDP_Global_Local_Conformational_Landscapes"
+[tool.hatch.build]
+include = [
+  "src/pyheteromap/reference_GW_chainlength_100.csv",
+]
