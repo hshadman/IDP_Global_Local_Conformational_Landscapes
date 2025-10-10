@@ -1,5 +1,5 @@
 ![Tests](https://github.com/hshadman/IDP_Global_Local_Conformational_Landscapes/actions/workflows/tests.yml/badge.svg)
-# Resolving Local and Global Conformational Heterogeneity of the Human Intrinsically Disordered Proteome Using (RSA, _R<sub>s</sub>_) Maps
+# **PyHeteroMap:** Resolving Local and Global Conformational Heterogeneity of the Human Intrinsically Disordered Proteome Using (RSA, _R<sub>s</sub>_) Maps
 
 ## This repository provides code to generate plots of instantaneous shape ratio (_R<sub>s</sub>_) and relative shape anisotropy (RSA). These shape parameters have previously been defined in this publication: https://www.cell.com/biophysj/fulltext/S0006-3495(24)00272-8  
 
