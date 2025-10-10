@@ -34,7 +34,7 @@ For a given IDR trajectory, **_PyHeteroMap_** can generate:
 
 **_PyHeteroMap_** can additionally simulate new **Gaussian Walk (GW)** chains of any chain length and any number of snapshots.
 
-(RSA, _R<sub>s</sub>_) scatter plots can be generated against that of a GW, from a csv file containing (RSA, _R<sub>s</sub>_) data (no trajectory needed) (see examples).  
+(RSA, _R<sub>s</sub>_) scatter plots can be generated directly from a csv file containing (RSA, _R<sub>s</sub>_) data (no trajectory needed) (see examples).  
 
 ---
 
