@@ -39,8 +39,8 @@ github_subchain_code/
 │       ├── traj1.xtc
 │       ├── traj2.xtc
 │       ├── top1.pdb
-│       └── top2.pdb
-│
+│       ├── top2.pdb    
+│       └── test_idr.csv
 ├── tests/
 │   ├── test_import.py
 │   ├── test_default_gw_loads.py
