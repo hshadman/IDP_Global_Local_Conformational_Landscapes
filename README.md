@@ -58,6 +58,38 @@ For a given peptide/protein trajectory, **_PyHeteroMap_** can generate:
 
 ---
 
+## Quickstart
+
+Clone and install locally:
+```bash
+git clone https://github.com/<your-username>/pyheteromap.git
+cd pyheteromap
+python -m pip install -e .
+
+Example usage inside Python or Jupyter:
+
+from pyheteromap import PyHeteroMap
+import os
+
+# Load the packaged FASTA CSV
+import pyheteromap
+fasta_csv = os.path.join(os.path.dirname(pyheteromap.__file__), "IDR_fasta_sequences.csv")
+
+# Initialize and load trajectory
+phm = PyHeteroMap("Example_IDR")
+phm.set_trajectory("examples/test_data/traj1.xtc", "examples/test_data/top1.pdb")
+
+# Run subchain analysis
+phm.initialize_30mer_subchain(fasta_csv)
+
+# Generate plots
+phm.plot_subchain_RSA(6, 4)
+phm.plot_subchain_Rg(6, 4)
+phm.mod_RSA_Rs_compute_3dplot_from_seq_name(provided_color="magenta")
+
+
+---
+
 ## References
 
 - [Biophysical Journal (2024)](https://www.cell.com/biophysj/fulltext/S0006-3495(24)00272-8)  
