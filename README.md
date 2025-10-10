@@ -39,7 +39,8 @@ For a given peptide/protein trajectory, **_PyHeteroMap_** can generate:
 **_PyHeteroMap_** mainly targets the ~28,000 human IDR simulations published by  
 [Tesei et al. (2024), *Nature*](https://www.nature.com/articles/s41586-023-07004-5)
 
-- Two such human IDR simulations are included as examples in the `examples/` folder.  
+- Two such human IDR simulations are included as examples in the `examples/` folder.
+- Each IDR has a unique identifier or seq_name.
 - The source code can easily be adapted to read other types of protein trajectories.  
 - Trajectory analysis is performed using **MDTraj**.  
 - **_PyHeteroMap_** can also simulate new **Gaussian Walk (GW)** chains of any chain length and number of snapshots.
