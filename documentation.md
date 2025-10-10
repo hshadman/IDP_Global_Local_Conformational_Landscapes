@@ -1,9 +1,17 @@
 # PyHeteroMap Documentation
 
 ## Overview
-**PyHeteroMap** is a Python package designed for structural and polymer-physics-based analysis of Intrinsically Disordered Region (IDR) trajectories. It provides functionality for comparing IDR simulations with Gaussian chain (GW) reference ensembles, subchain-level analyses, and extraction of key polymer shape metrics such as the radius of gyration (Rg), end-to-end distance (Ree), asphericity, acylindricity, and ν (Flory exponent).
+**PyHeteroMap** is a python package that analyzes single protein/peptide MD simulation trajectories. It mainly has three functionalities. It can:
 
-The package integrates data from coarse-grained (CG) and all-atom simulations using MDTraj and provides utilities to compute metrics, compare to reference Gaussian chains, and visualize per-residue subchain properties in a reproducible framework.
+1. Generate a map of the conformational landscape of a given peptide chain in the form of an (RSA, _R<sub>s</sub>_) scatter plot against that of a GW reference, directly from trajectory.The GW is a polymer chain model that provides a reference landscape for other proteins/polymers. Data for GW is already provided.
+
+2. Generate subchain plots (see examples) illustrating how RSA, _R<sub>s</sub>_, ν and other polymer properties vary along all moving windows (subchains) of the peptide chain, given its trajectory and fasta sequence. 
+
+3. Simulate a Gaussian Walk (GW) polymer model chain of any chain length and any  number of snapshots. Note: extremely high chain lengths or snapshot counts might require cautious interpretation. 
+
+The package uses MDTraj to analyze trajectories. In the examples, it is mainly used to analyze simulations of human Intrinsically Disordered Regions (IDRs) (Tesei et al. 2024).
+
+The plots generated are not saved automatically, those need to be saved by the user. The source code behind PyHeteroMap can be customized as needed. 
 
 ---
 
@@ -15,17 +23,24 @@ github_subchain_code/
 ├── src/
 │   └── pyheteromap/
 │       ├── __init__.py
-│       ├── pyheteromap.py          # Main PyHeteroMap class implementation
-│       └── reference_GW_chainlength_100.csv  # Default Gaussian reference data
+│       ├── pyheteromap.py          # The Main PyHeteroMap class 
+│       ├── reference_GW_chainlength_100.csv  # Default Gaussian reference data
+│       └── Tesei_2024_IDR-ome_fasta_sequences.csv  # Human IDR-ome fasta sequences (Tesei et al.)
 │
 ├── examples/
-│   └── example_usage.ipynb         # Demonstration Jupyter notebook
+│   ├── example_usage.ipynb         # Demonstration Jupyter notebook
+│   └── test_data/                  # Example trajectory and topology files (two separate IDRs from human IDR-ome data, Tesei et al. 2024).
+│       ├── traj1.xtc
+│       ├── traj2.xtc
+│       ├── top1.pdb
+│       └── top2.pdb
 │
 ├── tests/
 │   ├── test_import.py
 │   ├── test_default_gw_loads.py
 │   ├── test_override_csv_path.py
-│   └── test_requires_trajectory.py
+│   ├── test_requires_trajectory.py
+│   └── conftest.py
 │
 ├── LICENSE
 ├── README.md
@@ -35,7 +50,7 @@ github_subchain_code/
 
 ---
 
-## PyHeteroMap Class — Detailed Description
+## PyHeteroMap - a python class
 
 ### Class Initialization
 ```python
@@ -50,83 +65,87 @@ PyHeteroMap(
 ```
 
 **Purpose:**  
-Initializes the PyHeteroMap analysis object and optionally loads molecular dynamics trajectories.
+Initializes the PyHeteroMap object and optionally loads molecular dynamics (MD) trajectories.
 
 **Inputs:**
-- `seq_name`: (str) Identifier for the protein or sequence analyzed.
-- `gw_reference_csv`: (str) Path to Gaussian reference chain data (default distributed CSV).
+- `seq_name`: (str) Identifier for the protein/peptide sequence analyzed.
+- `gw_reference_csv`: (str) Path to GW reference chain data (default: reference_GW_chainlength_100.csv).
 - `traj_file_dir`: (str, optional) Path to trajectory file (e.g., `.xtc`).
 - `prmtop_file_dir`: (str, optional) Path to topology file (e.g., `.pdb`).
 - `skip_frames`: (int) Number of frames to skip from the start of trajectory.
-- `afrc_returns_angstrom`: (bool) If True, AnalyticalFRC results are returned in Ångström units.
+- `afrc_returns_angstrom`: (bool) If True, AnalyticalFRC (AFRC) results are returned in Ångström units.
 
 **Behavior:**  
-If trajectory paths are provided, initializes MDTraj objects, sets up internal trajectory slices, and prepares reference data from the Gaussian chain CSV.
+If trajectory and topology paths are provided, initializes MDTraj objects.
 
 ---
 
-### Gaussian Chain (GW) Reference Handling
+### Gaussian Walk (GW) Reference Handling
 
 #### `_load_gw_reference()`  
-Loads the Gaussian reference chain from the specified CSV. Raises an error if the file is missing or empty.
+Loads the GW reference chain from the specified CSV. Raises an error if the file is missing or empty.
 
 #### `reinitialize_gw_reference()`  
-Reloads the reference CSV into memory, replacing the current Gaussian chain DataFrame.
+Reloads the reference CSV into memory, replacing the current GW dataframe.
 
 #### `regenerate_GW_chain(chain_length, nosnaps, interval=1, mu=0, sigma=1)`  
-Generates a new synthetic Gaussian chain ensemble and stores it as `self.gw_df`.
+Simulates a new GW chain, with number of monomers =  chain_length, number of snapshots = nosnaps, and stores it as `self.gw_df`. Interval specifies snapshots to skip. For a GW chain, the displacement of one monomer to the next (in the x-, y-, and z-directions) is randomly picked from a gaussian distribution with mean = mu and standard deviation = sigma. By default mu is 0 and sigma is 1. 
 
 #### `export_gw_csv(out_path)`  
-Exports the loaded or regenerated Gaussian chain data to a CSV file.
+Exports the loaded or regenerated GW data to a CSV file to out_path. out_path is a string. 
 
 ---
 
 ### Trajectory Management
 
 #### `set_trajectory(traj_file_dir, prmtop_file_dir)`  
-Loads a molecular dynamics trajectory using MDTraj, computes end-to-end distances, sets up subchain boundaries, and verifies topology consistency.
+Loads a molecular dynamics (MD) trajectory using MDTraj, computes end-to-end distances and verifies topology consistency. If skip_frames was not None, skips the first few frames as specified by skip_frames (at the init stage).
 
 ---
 
 ### Subchain-Level Analysis
 
 #### `initialize_30mer_subchain(fasta_source, k_frac=3)`  
-Extracts subchains (default 30 residues) from an IDR trajectory and computes per-subchain properties (Rg, ν, RSA, etc.). Supports input via FASTA string, CSV file, or FASTA file.
+Extracts subchains of the peptide/protein (from its trajectory) and computes per-subchain properties (RSA, _R<sub>s</sub>_, ν, etc.). Supports input via FASTA string, CSV file, or FASTA file. A sliding/moving window is used to select subchains. For peptides/proteins <=60 residues, the moving window size is 1/k_frac of the number of residues. For >60 residues, the moving window size is fixed at 30 residues. A fasta_source (containing fasta residue sequence of the peptide) must be provided. It can be a plain sequence string, .fasta or .fa file, or extracted from the Tesei_2024_IDR-ome_fasta_sequences.csv file (provided with the package). If fasta_source=Tesei_2024_IDR-ome_fasta_sequences.csv, this is for the human IDR-ome data (Tesei et al. 2024), the sequence is obtained automatically from the provided seq_name. 
 
 #### Subchain Plot Functions  
-All subchain plots require prior execution of `initialize_30mer_subchain()`.
+NOTE: All subchain plots (below) require prior execution of `initialize_30mer_subchain()`. If using fasta_source = Tesei_2024_IDR-ome_fasta_sequences.csv, the path to the Tesei_2024_IDR-ome_fasta_sequences.csv file should be noted.
 
-- `plot_subchain_RSA()` – plots ⟨RSA⟩ (relative shape anisotropy) per residue.  
-- `plot_subchain_Rs()` – plots ⟨Rₛ⟩ (shape ratio) per residue.  
-- `plot_subchain_Rg()` – plots ⟨R_g⟩ per residue.  
-- `plot_subchain_Rg_over_Rgtheta()` – plots ⟨R_g / R_gθ⟩ ratio per residue.  
-- `plot_subchain_nu()` – plots ⟨ν⟩ (Flory scaling exponent) per residue.
+All subchain plots will show the corresponding global value for the peptide/protein in the form of a dotted horizontal line or text at the top of the plot. The x-axis shows the mid-residue of the subchain. Gray region shows standard deviation (or error in the case of ν). Y-axis shows local values of the polymer property. The subchain plots are colored by amino acid residue type. 
+
+These are the subchain plots possible:
+
+- `plot_subchain_RSA()` – plots ⟨RSA⟩ where RSA is the relative shape anisotropy.  
+- `plot_subchain_Rs()` – plots ⟨Rₛ⟩ (instantaneous shape ratio) .  
+- `plot_subchain_Rg()` – plots ⟨R_g⟩ (radius of gyration).  
+- `plot_subchain_Rg_over_Rgtheta()` – plots ⟨R_g / ⟨R_g^θ⟩⟩ where ⟨R_g^θ⟩ is obtained from the AFRC package (Alston et al. 2023). ⟨R_g^θ⟩ is the radius of gyration of a peptide chain if it behaved as an ideal chain, computed directly from sequence.  
+- `plot_subchain_nu()` – plots ⟨ν⟩ (Flory scaling exponent) per residue, using formula used by Tesei et al. 2024.
 
 ---
 
-### Protein vs. Gaussian Reference Comparison
+### Protein vs. GW Reference Comparison
 
 #### `mod_RSA_Rs_compute_3dplot_from_seq_name(provided_color='magenta')`  
-Computes and visualizes RSA–Rₛ relationships for the protein vs. Gaussian chain ensemble.
+Computes and visualizes (RSA, _Rₛ_) scatter plots of the protein and the GW reference. Calculates and displays ν and computes $f_{C\_shape}$ scores. The $f_{C\_shape}$ score computes how many of GW points are close to at least one protein/peptide point on the (RSA, _Rₛ_) scatter plot. It is a quantitative measure of the conformational diversity of that protein/peptide. 
 
 #### `mod_RSA_Rs_protein_3dplot_against_GW(protein_var, protein_label, second_obj, provided_color)`  
-Core comparison and plotting method combining experimental data (trajectory-derived) and Gaussian reference distributions.
+Plots and displays the (RSA, _Rₛ_) scatter plot and associated quantities. 
 
 #### `RSA_based_fC(...)`  
-Computes the overlap fraction (fC_shape) between the Gaussian ensemble and trajectory-derived conformational space.
+Computes the $f_{C\_shape}$ score. 
 
 ---
 
 ### Calculation and Utility Methods
 
 #### `calculate_nu_KLL_from_seq_name(start_residue, end_residue)`  
-Calculates ν (Flory scaling exponent) following Tesei et al. 2024, fitting ⟨Rij⟩ = R₀·i^ν.
+Calculates ν (Flory scaling exponent) following Tesei et al. 2024.
 
 #### `Rij(traj)` (static)  
-Pairwise distance calculation and scaling exponent estimation.
+Pairwise distance calculation and scaling exponent estimation (Tesei et al. 2024).
 
 #### `assign_properties(residue)` (static)  
-Assigns colors and categories (polar, apolar, charged) for visualization.
+Assigns colors and categories (polar, apolar, charged) to amino acid residues for visualization.
 
 ---
 
@@ -136,42 +155,18 @@ After running `PyHeteroMap`, key results are stored in instance variables:
 
 | Attribute | Description |
 |------------|--------------|
-| `gw_df` | Gaussian reference DataFrame (either loaded or regenerated). |
-| `protein_df` | Frame-wise protein trajectory data with shape metrics. |
+| `gw_df` | GW reference DataFrame (either loaded or regenerated). |
+| `protein_df` | Frame-wise protein trajectory data with polymer properties. |
 | `_traj_full` | Full MDTraj trajectory. |
 | `_traj` | Processed trajectory (after skipping frames). |
-| `_subchain_df` | Subchain-level data including Rg, ν, RSA, etc. |
-| `fC_value` | Fractional overlap between GW and protein ensembles. |
-| `grid_protein`, `grid_GW` | 2D histogram data used for RSA–Rₛ comparison plots. |
+| `_subchain_df` | Subchain-level data including R_g, ν, RSA, etc. |
+| `fC_value` | $f_{C\_shape}$ score: a quantitative measurement of the conformational diversity of the protein/peptide. |
 
-Generated plots include:  
-- RSA–Rₛ 2D scatter and histograms  
-- Per-residue ⟨Rg⟩, ⟨RSA⟩, ⟨Rₛ⟩, ⟨ν⟩  
-- Subchain metrics colored by amino acid type  
 
 All figures are returned via Matplotlib and can be further customized.
 
 ---
 
-## Example Usage
-
-```python
-from pyheteromap import PyHeteroMap
-
-# Initialize
-phm = PyHeteroMap("IDR_Example")
-
-# Load trajectory
-phm.set_trajectory("traj1.xtc", "top1.pdb")
-
-# Initialize subchain analysis
-phm.initialize_30mer_subchain("IDR_fasta_sequences.csv")
-
-# Generate and visualize results
-phm.plot_subchain_RSA(6, 4)
-phm.plot_subchain_Rg(6, 4)
-phm.mod_RSA_Rs_compute_3dplot_from_seq_name(provided_color="magenta")
-```
 
 ---
 
@@ -179,8 +174,8 @@ phm.mod_RSA_Rs_compute_3dplot_from_seq_name(provided_color="magenta")
 
 - **Unit consistency:** MDTraj returns distances in **nm**, AFRC reference in **Å** (scaling handled internally).  
 - **Trajectory requirement:** All methods depending on trajectory data must follow a successful call to `set_trajectory()`.  
-- **Performance:** For long IDRs (>300 residues), consider increasing `skip_frames` or sampling fewer subchains.  
-- **File organization:** Gaussian reference CSV is packaged and accessed relative to the installed module directory.  
+- **Performance:** For lengthy trajectories, consider increasing skip_frames.  
+- **File organization:** GW (reference) CSV is packaged and accessed relative to the installed module directory.  
 - **Tests:** Basic smoke and data integrity tests are located under `tests/`. Run with `pytest -q`.
 
 ---
