@@ -126,13 +126,13 @@ These are the subchain plots possible:
 ### Protein vs. GW Reference Comparison
 
 #### `mod_RSA_Rs_compute_3dplot_from_seq_name(provided_color='magenta')`  
-Computes and visualizes (RSA, _Rₛ_) scatter plots of the protein and the GW reference. Calculates and displays ν and computes $f_{C\_shape}$ scores. The $f_{C\_shape}$ score computes how many of GW points are close to at least one protein/peptide point on the (RSA, _Rₛ_) scatter plot. It is a quantitative measure of the conformational diversity of that protein/peptide. 
+Computes and visualizes (RSA, _Rₛ_) scatter plots of the protein and the GW reference. Calculates and displays ν and computes $f_{C\_shape}$ scores. The $f_{C\_{shape}}$ score computes how many of GW points are close to at least one protein/peptide point on the (RSA, _Rₛ_) scatter plot. It is a quantitative measure of the conformational diversity of that protein/peptide. 
 
 #### `mod_RSA_Rs_protein_3dplot_against_GW(protein_var, protein_label, second_obj, provided_color)`  
 Plots and displays the (RSA, _Rₛ_) scatter plot and associated quantities. 
 
 #### `RSA_based_fC(...)`  
-Computes the $f_{C\_shape}$ score. 
+Computes the $f_{C\_{shape}}$ score. 
 
 ---
 
@@ -160,7 +160,7 @@ After running `PyHeteroMap`, key results are stored in instance variables:
 | `_traj_full` | Full MDTraj trajectory. |
 | `_traj` | Processed trajectory (after skipping frames). |
 | `_subchain_df` | Subchain-level data including R_g, ν, RSA, etc. |
-| `fC_value` | $f_{C\_shape}$ score: a quantitative measurement of the conformational diversity of the protein/peptide. |
+| `fC_value` | $f_{C\_{shape}}$ score: a quantitative measurement of the conformational diversity of the protein/peptide. |
 
 
 All figures are returned via Matplotlib and can be further customized.
