@@ -3,11 +3,11 @@
 ## Overview
 **PyHeteroMap** is a python package that analyzes single protein/peptide MD simulation trajectories. It mainly has three functionalities. It can:
 
-1. Generate a map of the conformational landscape of a given peptide chain in the form of an (RSA, _R<sub>s</sub>_) scatter plot against that of a GW reference, directly from trajectory.The GW is a polymer chain model that provides a reference landscape for other proteins/polymers. Data for GW is already provided.
+1. Generate a map of the conformational landscape of a given peptide chain in the form of an (RSA, _R<sub>s</sub>_) scatter plot against that of a GW reference, directly from trajectory. The GW is a polymer chain model that provides a reference landscape for other proteins/polymers. Data for GW is already provided.
 
 2. Generate subchain plots (see examples) illustrating how RSA, _R<sub>s</sub>_, ν and other polymer properties vary along all moving windows (subchains) of the peptide chain, given its trajectory and fasta sequence. 
 
-3. Simulate a Gaussian Walk (GW) polymer model chain of any chain length and any  number of snapshots. Note: extremely high chain lengths or snapshot counts might require cautious interpretation. 
+3. Simulate a Gaussian Walk (GW) polymer model chain of any chain length and any number of snapshots. Note: extremely high chain lengths or snapshot counts might require cautious interpretation. 
 
 The package uses MDTraj to analyze trajectories. In the examples, it is mainly used to analyze simulations of human Intrinsically Disordered Regions (IDRs) (Tesei et al. 2024).
 
@@ -116,7 +116,7 @@ All subchain plots will show the corresponding global value for the peptide/prot
 These are the subchain plots possible:
 
 - `plot_subchain_RSA()` – plots ⟨RSA⟩ where RSA is the relative shape anisotropy.  
-- `plot_subchain_Rs()` – plots ⟨Rₛ⟩ (instantaneous shape ratio) .  
+- `plot_subchain_Rs()` – plots ⟨Rₛ⟩ (instantaneous shape ratio).  
 - `plot_subchain_Rg()` – plots $⟨R_g⟩$ (radius of gyration).  
 - `plot_subchain_Rg_over_Rgtheta()` – plots $⟨R_g / ⟨R_g^\theta⟩⟩$ where $⟨R_g^\theta⟩$ is obtained from the AFRC package (Alston et al. 2023). $⟨R_g^\theta⟩$ is the radius of gyration of a peptide chain if it behaved as an ideal chain, computed directly from sequence.  
 - `plot_subchain_nu()` – plots ν (Flory scaling exponent), using formula used by Tesei et al. 2024.
