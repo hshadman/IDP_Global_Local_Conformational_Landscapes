@@ -32,6 +32,7 @@ For a given peptide/protein trajectory, **_PyHeteroMap_** can generate:
    - Display how polymer properties such as ⟨RSA⟩, ⟨Rₛ⟩, and others vary at the subchain level.
 
 **_PyHeteroMap_** can additionally simulate new **Gaussian Walk (GW)** chains of any chain length and any number of snapshots.
+
 ---
 
 ## Applications
