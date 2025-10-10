@@ -46,7 +46,7 @@ For a given peptide/protein trajectory, **_PyHeteroMap_** can generate:
 - Trajectory analysis is performed using **MDTraj**.  
 - **_PyHeteroMap_** can also simulate new **Gaussian Walk (GW)** chains of any chain length and number of snapshots.
 
-Demonstrations are provided in the examples directory.
+
 
 ---
 
