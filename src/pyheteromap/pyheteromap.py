@@ -95,7 +95,7 @@ class PyHeteroMap:
         self._ree_series_nm = md.compute_distances(self._traj,atom_pairs= [[self._first_atom_index, self._last_atom_index]]).flatten()
         self._subchain_df = None
         if self._traj.topology.n_atoms != self._traj.topology.n_residues:
-            print("Warning: all-atom topology detected. Switch to CA atoms as noted in set_trajectory() to get meaningful ν.")
+            print("Warning: n_atoms is not equal to n_residues. Careful about the meaning of ν.")
 
     
         
@@ -426,7 +426,7 @@ class PyHeteroMap:
         traj = self._traj
         """
         fasta_source:
-          - If 'IDR_fasta_sequences.csv', the function reads it and extracts fasta_sequence by seq_name.
+          - If 'Tesei_2024_IDR-ome_fasta_sequences.csv', the function reads it and extracts fasta_sequence by seq_name.
           - If a path ending in '.fasta' or '.fa', it reads the FASTA file directly.
           - If a plain string (sequence of AAs), it uses that directly.
           - If None, raises an error.
