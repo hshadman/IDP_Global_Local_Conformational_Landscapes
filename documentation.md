@@ -132,7 +132,7 @@ Computes and visualizes (RSA, _Rₛ_) scatter plots of the protein and the GW re
 Plots and displays the (RSA, _Rₛ_) scatter plot and associated quantities. 
 
 #### `RSA_based_fC(...)`  
-Computes the $f_{C\_{shape}}$ score. 
+Computes the $f_{C\_shape}$ score. 
 
 ---
 
@@ -160,7 +160,7 @@ After running `PyHeteroMap`, key results are stored in instance variables:
 | `_traj_full` | Full MDTraj trajectory. |
 | `_traj` | Processed trajectory (after skipping frames). |
 | `_subchain_df` | Subchain-level data including R_g, ν, RSA, etc. |
-| `fC_value` | $f_{C\_shape}$ score: a quantitative measurement of the conformational diversity of the protein/peptide. |
+| `fC_value` | $$f_{C\_shape}$$ score: a quantitative measurement of the conformational diversity of the protein/peptide. |
 
 
 All figures are returned via Matplotlib and can be further customized.
