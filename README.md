@@ -62,7 +62,7 @@ For a given peptide/protein trajectory, **_PyHeteroMap_** can generate:
 
 Clone and install locally:
 ```bash
-git clone https://github.com/<your-username>/pyheteromap.git
+git clone https://github.com/hshadman/pyheteromap.git
 cd pyheteromap
 python -m pip install -e .
 
@@ -86,7 +86,7 @@ phm.initialize_30mer_subchain(fasta_csv)
 phm.plot_subchain_RSA(6, 4)
 phm.plot_subchain_Rg(6, 4)
 phm.mod_RSA_Rs_compute_3dplot_from_seq_name(provided_color="magenta")
-
+```
 
 ---
 
