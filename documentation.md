@@ -146,8 +146,8 @@ The output is stored in the attribute _subchain_df. The columns are:
 - `full_protein_ratio` – mean instantaneous shape ratio of the full IDR/chain.
 - `full_protein_nu_recompute` – nu (Flory scaling exponent) of the full IDR/chain.
 - `full_protein_nu_recompute_err` – nu (Flory scaling exponent) error of the full IDR/chain.
-- `full_protein_nu_RSA` – mean RSA of the full IDR/chain.
-- `full_protein_rg_rg_theta_mean` – $⟨R_g / ⟨R_g^\theta⟩⟩$ of the full IDR/chain.
+- `full_protein_RSA` – mean RSA of the full IDR/chain.
+- `full_protein_rg_rg_theta_mean` – $⟨R_g / ⟨R_g^\theta⟩⟩$ of the full IDR/chain (note use of mean symbol).
 - `seq_name` – seq_name provided.
 - `Rg/nm` – instantaneous Rg of the subchain.
 - `nu_recompute` – nu (Flory scaling exponent) of the subchain.
