@@ -1,5 +1,11 @@
 # PyHeteroMap Documentation
 
+- [Overview](#overview)
+- [Repository Structure](#repository-structure)
+- [Class Description](#pyheteromap---a-python-class)
+- [Outputs](#outputs)
+- [Developer Notes](#developer-notes)
+
 ## Overview
 **PyHeteroMap** is a python package that analyzes single protein/peptide MD simulation trajectories. [Tesei et al. (2024), *Nature*](https://www.nature.com/articles/s41586-023-07004-5) published simulations of 28058 Intrinsically Disordered Regions (IDRs) from the human proteome. **PyHeteroMap** is a tool that helps analyze their global and local conformational landscapes, directly from trajectory. However, the source code can be minimally adjusted to analyze other types of trajectories. It mainly has three functionalities. It can:
 
@@ -52,7 +58,7 @@ github_subchain_code/
 
 ## PyHeteroMap - a python class
 
-### Class Initialization
+### 1. Class Initialization
 ```python
 PyHeteroMap(
     seq_name,
@@ -80,7 +86,7 @@ If trajectory and topology paths are provided, initializes MDTraj objects.
 
 ---
 
-### Gaussian Walk (GW) Reference Handling
+### 2. Gaussian Walk (GW) Reference Handling
 
 #### `_load_gw_reference()`  
 Loads the GW reference chain from the specified CSV. Raises an error if the file is missing or empty.
@@ -105,14 +111,14 @@ However, when a GW chain is regenerated, additional columns are provided, includ
 
 ---
 
-### Trajectory Management
+### 3. Trajectory Management
 
 #### `set_trajectory(traj_file_dir, prmtop_file_dir)`  
 Loads a molecular dynamics (MD) trajectory using MDTraj, computes end-to-end distances and verifies topology consistency. If skip_frames was not None, skips the first few frames as specified by skip_frames (at the init stage).
 
 ---
 
-### Subchain-Level Analysis
+### 4. Subchain-Level Analysis
 
 #### `initialize_30mer_subchain(fasta_source, k_frac=3)`  
 Extracts subchains of the peptide/protein (from its trajectory) and computes per-subchain properties (RSA, _R<sub>s</sub>_, ν, etc.). Supports input via FASTA string, CSV file, or FASTA file. A sliding/moving window is used to select subchains. For peptides/proteins <=60 residues, the moving window size is 1/k_frac of the number of residues. For >60 residues, the moving window size is fixed at 30 residues. A fasta_source (containing fasta residue sequence of the peptide) must be provided. It can be a plain sequence string, .fasta or .fa file, or extracted from the Tesei_2024_IDR-ome_fasta_sequences.csv file (provided with the package). If fasta_source=Tesei_2024_IDR-ome_fasta_sequences.csv, this is for the human IDR-ome data (Tesei et al. 2024), the sequence is obtained automatically from the provided seq_name. 
@@ -165,7 +171,7 @@ The output is stored in the attribute _subchain_df. The columns are:
 
 
 
-### (RSA, _Rₛ_) Scatter Plots of Peptide and GW Reference
+### 5. (RSA, _Rₛ_) Scatter Plots of Peptide and GW Reference
 
 #### `mod_RSA_Rs_compute_3dplot_from_seq_name(provided_color='magenta')`  
 Computes and visualizes (RSA, _Rₛ_) scatter plots of the protein and the GW reference. Calculates and displays ν and computes f<sub>C_shape</sub> scores. The f<sub>C_shape</sub> score computes how many of GW points are close to at least one protein/peptide point on the (RSA, _Rₛ_) scatter plot. It is a quantitative measure of the conformational diversity of that protein/peptide. 
