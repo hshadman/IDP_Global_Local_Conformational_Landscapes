@@ -136,19 +136,6 @@ Computes the f<sub>C_shape</sub> score.
 
 ---
 
-### Calculation and Utility Methods
-
-#### `calculate_nu_KLL_from_seq_name(start_residue, end_residue)`  
-Calculates ν (Flory scaling exponent) following Tesei et al. 2024.
-
-#### `Rij(traj)` (static)  
-Pairwise distance calculation and scaling exponent estimation (Tesei et al. 2024).
-
-#### `assign_properties(residue)` (static)  
-Assigns colors and categories (polar, apolar, charged) to amino acid residues for visualization.
-
----
-
 ## Outputs
 
 After running `PyHeteroMap`, key results are stored in instance variables:
