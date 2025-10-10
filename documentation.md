@@ -179,6 +179,10 @@ Computes and visualizes (RSA, _Rₛ_) scatter plots of the protein and the GW re
 #### `mod_RSA_Rs_protein_3dplot_against_GW(protein_var, protein_label, second_obj, provided_color)`  
 Plots and displays the (RSA, _Rₛ_) scatter plot and associated quantities. 
 
+#### `mod_RSA_Rs_compute_3dplot_from_csv(self, csv_path,label, rsa_col='RSA', ratio_col='ratio',provided_color='magenta')`  
+Plots and displays the (RSA, _Rₛ_) scatter plot and associated quantities directly from a csv file, no trajectory required. rsa_col is the column header for the RSA data. ratio_col is the column header for the instantaneous shape ratio (_Rₛ_) data. csv_path is the path to the csv file.
+
+
 #### `RSA_based_fC(...)`  
 Computes the f<sub>C_shape</sub> score. 
 
