@@ -62,7 +62,7 @@ For a given peptide/protein trajectory, **_PyHeteroMap_** can generate:
 ## Quickstart
 
 Clone and install locally:
-```bash
+```
 git clone https://github.com/hshadman/pyheteromap.git
 cd pyheteromap
 python -m pip install -e .
@@ -72,6 +72,7 @@ Example usage inside Python or Jupyter is shown in the examples folder.
 
 Example usage in an interface without graphical display (headless) is shown below:
 
+```
 # put this at the very top, before importing pyplot
 import matplotlib
 matplotlib.use("Agg")  # headless-friendly backend
@@ -91,7 +92,6 @@ h.plot_subchain_RSA(6, 4); plt.savefig("subchain_RSA.png", dpi=300, bbox_inches=
 h.plot_subchain_Rg(6, 4);  plt.savefig("subchain_Rg.png",  dpi=300, bbox_inches="tight"); plt.close()
 h.mod_RSA_Rs_compute_3dplot_from_seq_name("magenta")
 plt.savefig("RSA_Rs_vs_GW.png", dpi=300, bbox_inches="tight"); plt.close()
-
 ```
 
 ---
