@@ -9,7 +9,7 @@
 
 3. Simulate a Gaussian Walk (GW) polymer model chain of any chain length and any number of snapshots. Note: extremely high chain lengths or snapshot counts might require cautious interpretation. 
 
-The package uses MDTraj to analyze trajectories. In the examples, it is mainly used to analyze simulations of human Intrinsically Disordered Regions (IDRs) (Tesei et al. 2024).
+The package uses MDTraj to analyze trajectories. The examples provided are two human IDR trajectories (Tesei et al. 2024).
 
 The plots generated are not saved automatically, those need to be saved by the user. The source code behind PyHeteroMap can be customized as needed. 
 
