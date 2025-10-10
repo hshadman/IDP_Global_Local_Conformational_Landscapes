@@ -1,7 +1,7 @@
 # PyHeteroMap Documentation
 
 ## Overview
-**PyHeteroMap** is a python package that analyzes single protein/peptide MD simulation trajectories. It mainly has three functionalities. It can:
+**PyHeteroMap** is a python package that analyzes single protein/peptide MD simulation trajectories. [Tesei et al. (2024), *Nature*](https://www.nature.com/articles/s41586-023-07004-5) published simulations of 28058 Intrinsically Disordered Regions (IDRs) from the human proteome. **PyHeteroMap** is a tool that helps analyze their global and local conformational landscapes, directly from trajectory. However, the source code can be minimally adjusted to analyze other types of trajectories. It mainly has three functionalities. It can:
 
 1. Generate a map of the conformational landscape of a given peptide chain in the form of an (RSA, _R<sub>s</sub>_) scatter plot against that of a GW reference, directly from trajectory. The GW is a polymer chain model that provides a reference landscape for other proteins/polymers. Data for GW is already provided.
 
@@ -95,12 +95,13 @@ Simulates a new GW chain, with number of monomers =  chain_length, number of sna
 Exports the loaded or regenerated GW data to a CSV file to out_path. out_path is a string. 
 
 
-The GW data is stored in the attribute gw_df. Each row is a snapshot of the GW simulation. The columns are:
+The GW data is stored in the attribute gw_df. Each row is a snapshot of the GW simulation. For the default GW reference file, the columns are provided:
 
 - `ratio` – instantaneous shape ratio of the chain at that snapshot.
 - `chain_length` – number of monomers in the GW chain.
 - `RSA` – RSA of the GW chain at that snapshot.
 
+However, when a GW chain is regenerated, additional columns are provided, including radius of gyration (Rg2 is radius of gyration squared), end-to-end distance (Rend2 is end-to-end distance squared) and (x, y, z) coordinates of every monomer of the chain at every snapshot. 
 
 ---
 
@@ -119,7 +120,7 @@ Extracts subchains of the peptide/protein (from its trajectory) and computes per
 #### Subchain Plot Functions  
 NOTE: All subchain plots (below) require prior execution of `initialize_30mer_subchain()`. If using fasta_source = Tesei_2024_IDR-ome_fasta_sequences.csv, the path to the Tesei_2024_IDR-ome_fasta_sequences.csv file should be noted.
 
-All subchain plots will show the corresponding global value for the peptide/protein in the form of a dotted horizontal line or text at the top of the plot. The x-axis shows the mid-residue of the subchain. Gray region shows standard deviation (or error in the case of ν). Y-axis shows local values of the polymer property. The subchain plots are colored by amino acid residue type. 
+All subchain plots will show the corresponding global (whole chain) polymer property for the peptide/protein in the form of a dotted horizontal line or text at the top of the plot. The x-axis shows the mid-residue of the subchain. Gray region shows standard deviation (or error in the case of ν). Y-axis shows local values of the polymer property. The subchain plots are colored by amino acid residue type. 
 
 These are the subchain plots possible:
 
@@ -164,7 +165,7 @@ The output is stored in the attribute _subchain_df. The columns are:
 
 
 
-### Protein vs. GW Reference Comparison
+### (RSA, _Rₛ_) Scatter Plots of Peptide and GW Reference
 
 #### `mod_RSA_Rs_compute_3dplot_from_seq_name(provided_color='magenta')`  
 Computes and visualizes (RSA, _Rₛ_) scatter plots of the protein and the GW reference. Calculates and displays ν and computes f<sub>C_shape</sub> scores. The f<sub>C_shape</sub> score computes how many of GW points are close to at least one protein/peptide point on the (RSA, _Rₛ_) scatter plot. It is a quantitative measure of the conformational diversity of that protein/peptide. 
@@ -191,7 +192,7 @@ After running `PyHeteroMap`, key results are stored in instance variables:
 | `fC_value` | f<sub>C_shape</sub> score: a quantitative measurement of the conformational diversity of the protein/peptide. |
 
 
-All figures are returned via Matplotlib and can be further customized.
+All figures are returned via Matplotlib and can be further customized by adjusting the source code.
 
 ---
 
