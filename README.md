@@ -21,18 +21,20 @@ For a given intrinsically disordered protein (IDP) or region (IDR) of a protein:
 
 ## Features
 
-For a given peptide/protein trajectory, **_PyHeteroMap_** can generate:
+For a given IDR trajectory, **_PyHeteroMap_** can generate:
 
 1. **(RSA, _R<sub>s</sub>_) scatter plots**  
    - Compare an IDR/peptide conformational landscape against that of a Gaussian Walk (GW) reference.  
    - Compute metrics such as the f<sub>C_shape</sub> score that quantify its conformational diversity.
    - Compute ν (the Flory scaling exponent) ([Tesei et al. (2024), *Nature*](https://www.nature.com/articles/s41586-023-07004-5)).
-   - EXTRA: (RSA, _R<sub>s</sub>_) scatter plots can be generated against that of a GW, from a csv file containing (RSA, _R<sub>s</sub>_) data (no trajectory needed) (see examples).  
+
 
 2. **Local polymer property plots**  
    - Display how polymer properties such as ⟨RSA⟩, ⟨Rₛ⟩, and others vary at the subchain level.
 
 **_PyHeteroMap_** can additionally simulate new **Gaussian Walk (GW)** chains of any chain length and any number of snapshots.
+
+(RSA, _R<sub>s</sub>_) scatter plots can be generated against that of a GW, from a csv file containing (RSA, _R<sub>s</sub>_) data (no trajectory needed) (see examples).  
 
 ---
 

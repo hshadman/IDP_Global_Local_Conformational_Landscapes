@@ -9,9 +9,9 @@
 ## Overview
 **PyHeteroMap** is a python package that analyzes single protein/peptide MD simulation trajectories. [Tesei et al. (2024), *Nature*](https://www.nature.com/articles/s41586-023-07004-5) published simulations of 28058 Intrinsically Disordered Regions (IDRs) from the human proteome. **PyHeteroMap** is a tool that helps analyze their global and local conformational landscapes, directly from trajectory. However, the source code can be minimally adjusted to analyze other types of trajectories. It mainly has three functionalities. It can:
 
-1. Generate a map of the conformational landscape of a given peptide chain in the form of an (RSA, _R<sub>s</sub>_) scatter plot against that of a GW reference, directly from trajectory. The GW is a polymer chain model that provides a reference landscape for other proteins/polymers. Data for GW is already provided.
+1. Generate a map of the conformational landscape of a given IDR/peptide chain in the form of an (RSA, _R<sub>s</sub>_) scatter plot against that of a GW reference, directly from trajectory. The GW is a polymer chain model that provides a reference landscape for other proteins/polymers. Data for GW is already provided.
 
-2. Generate subchain plots (see examples) illustrating how RSA, _R<sub>s</sub>_, ν and other polymer properties vary along all moving windows (subchains) of the peptide chain, given its trajectory and fasta sequence. 
+2. Generate subchain plots (see examples) illustrating how RSA, _R<sub>s</sub>_, ν and other polymer properties vary along all moving windows (subchains) of the IDR/peptide chain, given its trajectory and fasta sequence. 
 
 3. Simulate a Gaussian Walk (GW) polymer model chain of any chain length and any number of snapshots. Note: extremely high chain lengths or snapshot counts might require cautious interpretation. 
 
