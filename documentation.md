@@ -160,7 +160,7 @@ After running `PyHeteroMap`, key results are stored in instance variables:
 | `_traj_full` | Full MDTraj trajectory. |
 | `_traj` | Processed trajectory (after skipping frames). |
 | `_subchain_df` | Subchain-level data including $R_g$, ν, RSA, etc. |
-| `fC_value` | $f<sub>C_shape</sub>$ score: a quantitative measurement of the conformational diversity of the protein/peptide. |
+| `fC_value` | f<sub>C_shape</sub> score: a quantitative measurement of the conformational diversity of the protein/peptide. |
 
 
 All figures are returned via Matplotlib and can be further customized.
