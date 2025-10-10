@@ -30,6 +30,7 @@ Issues   = "https://github.com/hshadman/IDP_Global_Local_Conformational_Landscap
 [tool.hatch.build]
 include = [
   "src/pyheteromap/reference_GW_chainlength_100.csv",
+  "src/pyheteromap/Tesei_2024_IDR-ome_fasta_sequences.csv"
 ]
 [tool.hatch.build.targets.wheel]
 packages = ["src/pyheteromap"]
