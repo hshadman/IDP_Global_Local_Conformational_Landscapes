@@ -1,12 +1,12 @@
 ![Tests](https://github.com/hshadman/IDP_Global_Local_Conformational_Landscapes/actions/workflows/tests.yml/badge.svg)
 
-# **_PyHeteroMap_:** Resolving Local and Global Conformational Heterogeneity of the Human Intrinsically Disordered Proteome Using (RSA, _R<sub>s</sub>_) Maps
+# **_PyHeteroMap_:** A Companion for Resolving Local and Global Conformational Heterogeneity of the Human Intrinsically Disordered Proteome Using (RSA, _R<sub>s</sub>_) Maps
 
 ---
 
 ## Overview
 
-[Tesei et al. (2024), *Nature*](https://www.nature.com/articles/s41586-023-07004-5) recenly published simulations of all Intrinsically Disordered Regions (IDRs) in human proteome - an expansive dataset of 28058 IDRs. **_PyHeteroMap_:** can help analyze the local and global conformational landscapes of these human IDRs, directly from trajectory. There are two main metrics of shape:  instantaneous shape ratio (_R<sub>s</sub>_) and relative shape anisotropy (RSA). These shape parameters have previously been defined in this publication: [Biophysical Journal (2024)](https://www.cell.com/biophysj/fulltext/S0006-3495(24)00272-8)
+[Tesei et al. (2024), *Nature*](https://www.nature.com/articles/s41586-023-07004-5) recenly published simulations of all Intrinsically Disordered Regions (IDRs) in the human proteome - an expansive dataset of 28058 IDRs. **_PyHeteroMap_:** can help analyze the local and global conformational landscapes of these human IDRs, directly from trajectory. There are two main metrics of shape:  instantaneous shape ratio (_R<sub>s</sub>_) and relative shape anisotropy (RSA). These shape parameters have previously been defined in this publication: [Biophysical Journal (2024)](https://www.cell.com/biophysj/fulltext/S0006-3495(24)00272-8)
 
 ---
 
