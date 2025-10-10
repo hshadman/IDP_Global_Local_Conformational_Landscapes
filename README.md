@@ -14,7 +14,7 @@
 
 For a given intrinsically disordered protein (IDP) or region (IDR) of a protein:
 
-- **Global ensembles:** can be examined by generating a scatter plot of _R<sub>s</sub>_ against RSA of the full chain.  
+- **Global ensembles:** can be examined by generating a scatter plot of (instantaneous) _R<sub>s</sub>_ against RSA of the full chain.  
 - **Local ensembles:** can be examined using a moving/sliding window across the chain to monitor ⟨_R<sub>s</sub>_⟩, ⟨RSA⟩ and other polymer properties for each subchain.
 
 ---
