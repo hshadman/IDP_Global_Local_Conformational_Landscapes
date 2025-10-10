@@ -119,7 +119,7 @@ These are the subchain plots possible:
 - `plot_subchain_Rs()` – plots ⟨Rₛ⟩ (instantaneous shape ratio) .  
 - `plot_subchain_Rg()` – plots $⟨R_g⟩$ (radius of gyration).  
 - `plot_subchain_Rg_over_Rgtheta()` – plots $⟨R_g / ⟨R_g^\theta⟩⟩$ where $⟨R_g^\theta⟩$ is obtained from the AFRC package (Alston et al. 2023). $⟨R_g^\theta⟩$ is the radius of gyration of a peptide chain if it behaved as an ideal chain, computed directly from sequence.  
-- `plot_subchain_nu()` – plots ⟨ν⟩ (Flory scaling exponent) per residue, using formula used by Tesei et al. 2024.
+- `plot_subchain_nu()` – plots ν (Flory scaling exponent), using formula used by Tesei et al. 2024.
 
 ---
 
