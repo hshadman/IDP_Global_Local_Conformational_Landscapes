@@ -94,6 +94,14 @@ Simulates a new GW chain, with number of monomers =  chain_length, number of sna
 #### `export_gw_csv(out_path)`  
 Exports the loaded or regenerated GW data to a CSV file to out_path. out_path is a string. 
 
+
+The GW data is stored in the attribute gw_df. Each row is a snapshot of the GW simulation. The columns are:
+
+- `ratio` – instantaneous shape ratio of the chain at that snapshot.
+- `chain_length` – number of monomers in the GW chain.
+- `RSA` – RSA of the GW chain at that snapshot.
+
+
 ---
 
 ### Trajectory Management
@@ -121,7 +129,40 @@ These are the subchain plots possible:
 - `plot_subchain_Rg_over_Rgtheta()` – plots $⟨R_g / ⟨R_g^\theta⟩⟩$ where $⟨R_g^\theta⟩$ is obtained from the AFRC package (Alston et al. 2023). $⟨R_g^\theta⟩$ is the radius of gyration of a peptide chain if it behaved as an ideal chain, computed directly from sequence.  
 - `plot_subchain_nu()` – plots ν (Flory scaling exponent), using formula used by Tesei et al. 2024.
 
+The output is stored in the attribute _subchain_df. The columns are:
+
+- `fasta_sequence` – fasta sequence of the subchain.
+- `start_res_zeroindex` – start index of the subchain (zero index format).
+- `end_res_zeroindex` – end index of the subchain (zero index format).
+- `full_protein_fasta` – fasta sequence of the full IDR/chain.
+- `full_protein_rgyr` – mean radius of gyration of the full IDR/chain.
+- `full_protein_ratio` – mean instantaneous shape ratio of the full IDR/chain.
+- `full_protein_nu_recompute` – nu (Flory scaling exponent) of the full IDR/chain.
+- `full_protein_nu_recompute_err` – nu (Flory scaling exponent) error of the full IDR/chain.
+- `full_protein_nu_RSA` – mean RSA of the full IDR/chain.
+- `full_protein_rg_rg_theta_mean` – $⟨R_g / ⟨R_g^\theta⟩⟩$ of the full IDR/chain.
+- `seq_name` – seq_name provided.
+- `Rg/nm` – instantaneous Rg of the subchain.
+- `nu_recompute` – nu (Flory scaling exponent) of the subchain.
+- `nu_recompute_err` – nu (Flory scaling exponent) error of the subchain.
+- `ete` – instantaneous end-to-end distance of the subchain.
+- `inst_ratio` – instantaneous shape ratio of the subchain.
+- `RSA` – instantaneous RSA of the subchain.
+- `AFRC_mean_rg_theta` – $⟨R_g^\theta⟩$ of the subchain (note use of mean symbol).
+- `rg_rg_theta_mean` – $R_g / ⟨R_g^\theta⟩$ of the subchain (note use of mean symbol).
+- `mid_residue` – the mid residue of the subchain.
+
+
+
+
+
+
 ---
+
+
+
+
+
 
 ### Protein vs. GW Reference Comparison
 
