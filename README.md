@@ -65,27 +65,32 @@ Clone and install locally:
 git clone https://github.com/hshadman/pyheteromap.git
 cd pyheteromap
 python -m pip install -e .
+```
 
-Example usage inside Python or Jupyter:
+Example usage inside Python or Jupyter is shown in the examples folder.
 
+Example usage in an interface without graphical display (headless) is shown below:
+
+# put this at the very top, before importing pyplot
+import matplotlib
+matplotlib.use("Agg")  # headless-friendly backend
+
+import matplotlib.pyplot as plt
+import os, pyheteromap
 from pyheteromap import PyHeteroMap
-import os
 
-# Load the packaged FASTA CSV
-import pyheteromap
-fasta_csv = os.path.join(os.path.dirname(pyheteromap.__file__), "IDR_fasta_sequences.csv")
+FASTA_CSV = os.path.join(os.path.dirname(pyheteromap.__file__), "Tesei_2024_IDR-ome_fasta_sequences.csv")
 
-# Initialize and load trajectory
-phm = PyHeteroMap("Example_IDR")
-phm.set_trajectory("examples/test_data/traj1.xtc", "examples/test_data/top1.pdb")
+h = PyHeteroMap("IDR_Example")
+h.set_trajectory("traj1.xtc", "top1.pdb")
+h.initialize_30mer_subchain(FASTA_CSV)
 
-# Run subchain analysis
-phm.initialize_30mer_subchain(fasta_csv)
+# Generate plots — then save instead of show
+h.plot_subchain_RSA(6, 4); plt.savefig("subchain_RSA.png", dpi=300, bbox_inches="tight"); plt.close()
+h.plot_subchain_Rg(6, 4);  plt.savefig("subchain_Rg.png",  dpi=300, bbox_inches="tight"); plt.close()
+h.mod_RSA_Rs_compute_3dplot_from_seq_name("magenta")
+plt.savefig("RSA_Rs_vs_GW.png", dpi=300, bbox_inches="tight"); plt.close()
 
-# Generate plots
-phm.plot_subchain_RSA(6, 4)
-phm.plot_subchain_Rg(6, 4)
-phm.mod_RSA_Rs_compute_3dplot_from_seq_name(provided_color="magenta")
 ```
 
 ---
