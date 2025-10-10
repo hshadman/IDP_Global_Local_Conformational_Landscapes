@@ -1,30 +1,67 @@
 ![Tests](https://github.com/hshadman/IDP_Global_Local_Conformational_Landscapes/actions/workflows/tests.yml/badge.svg)
+
 # **_PyHeteroMap_:** Resolving Local and Global Conformational Heterogeneity of the Human Intrinsically Disordered Proteome Using (RSA, _R<sub>s</sub>_) Maps
 
-## This repository provides code to generate plots of instantaneous shape ratio (_R<sub>s</sub>_) and relative shape anisotropy (RSA). These shape parameters have previously been defined in this publication: https://www.cell.com/biophysj/fulltext/S0006-3495(24)00272-8  
+---
 
-For a given intrinsically disordered protein (IDP) or region (IDR) of a protein, the global (i.e. whole chain) conformational ensembles can be examined by generating a scatter plot of _R<sub>s</sub>_ against RSA of the full chain. For the same chain, local conformational ensembles can be examined by using a moving/sliding window across the chain and monitoring _R<sub>s</sub>_ and RSA for each subchain.
+## Overview
 
-The below two jupyter notebook files provide code to generate plots of conformational ensembles.
+This repository provides code to generate plots of instantaneous shape ratio (_R<sub>s</sub>_) against relative shape anisotropy (RSA).  
+These shape parameters have previously been defined in this publication:  
+[Biophysical Journal (2024)](https://www.cell.com/biophysj/fulltext/S0006-3495(24)00272-8)
 
-1. _global_conf_landscape_map.ipynb_: Provides code with examples to generate scatter plots of global ensembles.
-2. _subchain_code_with_examples.ipynb_: Provides code with examples to generate _R<sub>s</sub>_ and RSA plots at the local (subchain) level.
+---
 
-Two human IDR simulations, taken from https://www.nature.com/articles/s41586-023-07004-5, are used as examples. 
+## Description
 
-_ete1.npy_ and _ete2.npy_ provide end-to-end distance values for the two IDR simulation trajectories.
+For a given intrinsically disordered protein (IDP) or region (IDR) of a protein:
 
-_rg1.npy_ and _rg2.npy_ provide radius of gyration for the two IDR simulation trajectories.
+- **Global ensembles:** can be examined by generating a scatter plot of _R<sub>s</sub>_ against RSA of the full chain.  
+- **Local ensembles:** can be examined using a moving/sliding window across the chain to monitor _R<sub>s</sub>_ and RSA for each subchain.
 
-_traj1.xtc_ and _traj2.xtc_ -> trajectory files for the two IDR simulations.
+---
 
-_top1.pdb_ and _top2.pdb_ -> topology files for the two IDR simulations.
+## Features
 
-_IDR_fasta_sequences.csv_ provides fasta sequences for all the human IDRs (published: https://www.nature.com/articles/s41586-023-07004-5).
+For a given peptide/protein trajectory, **_PyHeteroMap_** can generate:
 
-_IDR_nu_values.csv_ provides ν values for all the human IDRs (published: https://www.nature.com/articles/s41586-023-07004-5).
+1. **(RSA, _R<sub>s</sub>_) scatter plots**  
+   - Compare a trajectory against a Gaussian Walk (GW) reference.  
+   - Compute metrics such as the f<sub>C_shape</sub> score that quantify its conformational diversity.
 
-We use the conformational ensembles of the Gaussian Walk (GW) polymer model (https://www.cell.com/biophysj/fulltext/S0006-3495(24)00272-8) as a reference for the ensembles of other proteins and polymers. The GW file used in these examples (reference_GW_chainlen_100_for_RSA.csv) can be downloaded from Zenodo. The code to conduct GW simulations is provided in a different repository (https://github.com/hshadman/2d_conformational_landscape_map). 
+2. **Local polymer property plots**  
+   - Display how polymer properties such as ⟨RSA⟩, ⟨Rₛ⟩, and others vary at the subchain level.
 
-Though the code here was mainly intended to analyze a publicly available human IDR-ome dataset (https://www.nature.com/articles/s41586-023-07004-5), it can  be easily adapted for any protein/polymer chain.
+---
+
+## Applications
+
+**_PyHeteroMap_** mainly targets the ~28,000 human IDR simulations published by  
+[Tesei et al. (2024), *Nature*](https://www.nature.com/articles/s41586-023-07004-5)
+
+- Two such human IDR simulations are included as examples in the `examples/` folder.  
+- The source code can easily be adapted to read other types of protein trajectories.  
+- Trajectory analysis is performed using **MDTraj**.  
+- **_PyHeteroMap_** can also simulate new **Gaussian Walk (GW)** chains of any chain length and number of snapshots.
+
+---
+
+## Included Data
+
+- **Tesei_2024_IDR-ome_fasta_sequences.csv**  
+  Provides fasta sequences for all human IDRs published by Tesei et al. (2024).
+
+- **reference_GW_chainlength_100.csv**  
+  Gaussian Walk (GW) reference ensemble used in the examples.  
+  Located at:  src/pyheteromap/reference_GW_chainlength_100.csv
+
+
+---
+
+## References
+
+- [Biophysical Journal (2024)](https://www.cell.com/biophysj/fulltext/S0006-3495(24)00272-8)  
+- [Tesei et al. (2024), *Nature*](https://www.nature.com/articles/s41586-023-07004-5)
+
+---
 
