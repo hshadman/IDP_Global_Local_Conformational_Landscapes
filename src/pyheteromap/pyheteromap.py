@@ -115,12 +115,57 @@ class PyHeteroMap:
         self.protein_df['ratio'] = self.protein_df['Ree2']/self.protein_df['Rg2']
         print('Data loaded. Visualizing now, this could take some time.')
         return self.mod_RSA_Rs_protein_3dplot_against_GW(self.protein_df, self.seq_name, 'protein', provided_color)
+    def mod_RSA_Rs_compute_3dplot_from_csv(self, csv_path,label, rsa_col='RSA', ratio_col='ratio',
+                                        provided_color='magenta'):
+        """
+        Load a CSV with columns for RSA and ratio and produce the same plot as
+        mod_RSA_Rs_protein_3dplot_against_GW, using the GW reference (loaded or regenerated).
+    
+        Parameters
+        ----------
+        csv_path : str
+            Path to CSV containing at least the RSA and ratio columns.
+        rsa_col : str, default 'RSA'
+            Column name in the CSV that holds RSA values.
+        ratio_col : str, default 'ratio'
+            Column name in the CSV that holds shape ratio (Ree^2 / Rg^2).
+        label : str
+            Label to use for the protein/polymer in the legend. Required; must be non-empty.
+        provided_color : str
+            Matplotlib color for the protein/polymer points and histograms.
+        """
+        if label is None or (isinstance(label, str) and label.strip() == ""):
+            raise ValueError("You must provide a non-empty 'label' string.")
+        
+        if not os.path.exists(csv_path):
+            raise FileNotFoundError(f"CSV not found: {csv_path}")
+    
+        df = pd.read_csv(csv_path)
+        if rsa_col not in df.columns or ratio_col not in df.columns:
+            raise ValueError(f"CSV must contain columns '{rsa_col}' and '{ratio_col}'.")
+    
+        df = df[[rsa_col, ratio_col]].copy().rename(columns={rsa_col: 'RSA', ratio_col: 'ratio'})
+        
+        df['RSA'] = pd.to_numeric(df['RSA'], errors='coerce')
+        df['ratio'] = pd.to_numeric(df['ratio'], errors='coerce')
+        df = df.replace([np.inf, -np.inf], np.nan).dropna(subset=['RSA', 'ratio'])
+        if df.empty:
+            raise ValueError("No valid rows after cleaning RSA/ratio columns.")
+        
+        if (df['RSA'] < 0).any() or (df['ratio'] < 0).any():
+            raise ValueError("RSA and ratio must be non-negative.")
+    
+        self.protein_df = df.reset_index(drop=True)
+        
+    
+        return self.mod_RSA_Rs_protein_3dplot_against_GW(self.protein_df, label, 'csv', provided_color)
+    
     @staticmethod
     def RSA_based_fC(protein_var,protein_name,poly_id,
                            GW_moment_var,every_ith_snap,GW_every_ith_snap,radius_):
         x_total=[]
         y_total=[]
-        if poly_id=='protein':
+        if poly_id in ('protein','csv'):
             protein_label=protein_name
             temp_protein=protein_var.copy()
             x_total.append(temp_protein.RSA.values)
@@ -208,7 +253,11 @@ class PyHeteroMap:
 
         testeq_GW = self.gw_df
         
-        nu_val, nu_err = self.calculate_nu_KLL_from_seq_name(1, self._n_residues)
+        nu_val = None
+        if second_obj == 'protein':  
+            if getattr(self, "_traj", None) is None:
+                raise RuntimeError("Trajectory not set. Call set_trajectory(...) before using trajectory-based plotting.")
+            nu_val, nu_err = self.calculate_nu_KLL_from_seq_name(1, self._n_residues)
         
         plt.rcParams["font.weight"] = "regular"
         plt.rcParams["axes.labelweight"] = "regular"
@@ -225,7 +274,7 @@ class PyHeteroMap:
         x_polmodel_GW.append(testeq_GW['RSA'].values)
         y_polmodel_GW.append(testeq_GW['ratio'].values)
     
-        if second_obj=='protein':        
+        if second_obj in ('protein', 'csv'):        
             temp_protein =  protein_var.copy()
     
             x_total.append(temp_protein.RSA.values)
@@ -238,7 +287,7 @@ class PyHeteroMap:
                            1,0.1)            
             del temp_protein
         else:
-            print('ERROR. FIX ERROR')
+            raise ValueError("second_obj must be 'protein' or 'csv'")
     
         x_total=list(chain.from_iterable(x_total))
         y_total=list(chain.from_iterable(y_total))
@@ -376,10 +425,11 @@ class PyHeteroMap:
         axTemperature.text(1.03,1.12,
                            r'$f_{C\_shape}$ = '+format(self.fC_value,'0.3f'),
                           transform=axTemperature.transAxes,fontsize=8)
-        
-        axTemperature.text(1.03,1.05,
+        if nu_val is not None:
+            axTemperature.text(1.03,1.05,
                                f"$\\nu$ = {nu_val:0.3f}",
-                              transform=axTemperature.transAxes,fontsize=8)    
+                              transform=axTemperature.transAxes,fontsize=8)
+        
         axTemp_legend=axTemperature.legend(fontsize=7,loc=(1.01,1.19),borderpad = 0.03,
                                            labelspacing = 0.05, handlelength  = 1,frameon=False,
                                            handletextpad = 0.005)
