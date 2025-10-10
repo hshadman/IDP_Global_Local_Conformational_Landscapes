@@ -15,7 +15,7 @@
 For a given intrinsically disordered protein (IDP) or region (IDR) of a protein:
 
 - **Global ensembles:** can be examined by generating a scatter plot of _R<sub>s</sub>_ against RSA of the full chain.  
-- **Local ensembles:** can be examined using a moving/sliding window across the chain to monitor _R<sub>s</sub>_, RSA and other polymer properties for each subchain.
+- **Local ensembles:** can be examined using a moving/sliding window across the chain to monitor ⟨_R<sub>s</sub>_⟩, ⟨RSA⟩ and other polymer properties for each subchain.
 
 ---
 
@@ -24,8 +24,9 @@ For a given intrinsically disordered protein (IDP) or region (IDR) of a protein:
 For a given peptide/protein trajectory, **_PyHeteroMap_** can generate:
 
 1. **(RSA, _R<sub>s</sub>_) scatter plots**  
-   - Compare a trajectory against a Gaussian Walk (GW) reference.  
+   - Compare an IDR/peptide conformational landscape against that of a Gaussian Walk (GW) reference.  
    - Compute metrics such as the f<sub>C_shape</sub> score that quantify its conformational diversity.
+   - Compute ν (the Flory scaling exponent) [Tesei et al. (2024), *Nature*](https://www.nature.com/articles/s41586-023-07004-5).
 
 2. **Local polymer property plots**  
    - Display how polymer properties such as ⟨RSA⟩, ⟨Rₛ⟩, and others vary at the subchain level.
