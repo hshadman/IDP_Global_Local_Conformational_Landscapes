@@ -8,14 +8,13 @@
 
 [Tesei et al. (2024), *Nature*](https://www.nature.com/articles/s41586-023-07004-5) recenly published simulations of all Intrinsically Disordered Regions (IDRs) in the human proteome - an expansive dataset of 28058 IDRs. **_PyHeteroMap_:** can help analyze the local and global conformational landscapes of these human IDRs, directly from trajectory. There are two main metrics of shape:  instantaneous shape ratio (_R<sub>s</sub>_) and relative shape anisotropy (RSA). These shape parameters have previously been defined in this publication: [Biophysical Journal (2024)](https://www.cell.com/biophysj/fulltext/S0006-3495(24)00272-8)
 
----
-
-## Description
-
 For a given intrinsically disordered protein (IDP) or region (IDR) of a protein:
 
 - **Global conformational ensembles:** can be examined by generating a scatter plot of (instantaneous) _R<sub>s</sub>_ against RSA of the full chain.  
 - **Local conformational ensembles:** can be examined by using a moving/sliding window across the chain and monitoring ⟨_R<sub>s</sub>_⟩, ⟨RSA⟩ and other polymer properties of each subchain. Local ensembles can also be examined by generating a scatter plot of (instantaneous) _R<sub>s</sub>_ against RSA of one or more subchain trajectories. 
+
+The Gaussian Walk (GW) polymer model, which has minimal restrictions from excluded volume or other types of interactions, can provide a reference ensemble for the ensembles of other proteins and polymers, as we previously demonstrated ([Biophysical Journal (2024)](https://www.cell.com/biophysj/fulltext/S0006-3495(2\
+4)00272-8)).
 
 ---
 
