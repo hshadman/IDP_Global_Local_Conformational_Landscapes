@@ -32,6 +32,9 @@ For a given IDR trajectory, **_PyHeteroMap_** can generate:
 2. **Local polymer property plots**  
    - Display how polymer properties such as ⟨RSA⟩, ⟨Rₛ⟩, and others vary at the subchain level.
 
+3. **Local (RSA, _R<sub>s</sub>_) plots**  
+   - For one or more selected subchains of an IDR, (RSA, _R<sub>s</sub>_) scatter plots can be generated (see examples).
+
 **_PyHeteroMap_** can additionally simulate new **Gaussian Walk (GW)** chains of any chain length and any number of snapshots.
 
 (RSA, _R<sub>s</sub>_) scatter plots can be generated directly from a csv file containing (RSA, _R<sub>s</sub>_) data (no trajectory needed) (see examples).  

@@ -616,9 +616,73 @@ class PyHeteroMap:
             del running_df, t_df_moments
             #print(f"residue {start_res-1} to {start_res + k - 2} done")
             j+=1
-        print('Subchain data generated.\n')    
+        
+        master_df['mid_residue'] = (master_df['start_res_zeroindex'] + master_df['end_res_zeroindex']) // 2
         self._subchain_df = master_df.copy()
-        return master_df
+        print('Subchain data generated and stored in _subchain_df.\n')
+        return 
+    def mod_RSA_Rs_compute_3dplot_for_subchain(self, mid_residues, label, provided_color='magenta'):
+        """
+        Select one or more subchains by their mid_residue values from self._subchain_df,
+        then plot RSA vs instantaneous shape ratio using the existing
+        mod_RSA_Rs_protein_3dplot_against_GW method.
+    
+        Parameters
+        ----------
+        mid_residues : int or iterable of int
+            One or more mid_residue identifiers to select.
+        label : str
+            Legend label for the selected subchains.
+        provided_color : str
+            Matplotlib color to use for the selected points/histograms.
+        """
+        if self._subchain_df is None:
+            raise RuntimeError("No subchain data. Run initialize_30mer_subchain(...) first.")
+    
+        if label is None or (isinstance(label, str) and label.strip() == ""):
+            raise ValueError("Provide a non-empty 'label'.")
+    
+        # Normalize mid_residues to a list of ints
+        if isinstance(mid_residues, (int, np.integer)):
+            mids = [int(mid_residues)]
+        else:
+            try:
+                mids = [int(m) for m in mid_residues]
+            except Exception as e:
+                raise TypeError("mid_residues must be an int or an iterable of ints.") from e
+    
+        df = self._subchain_df
+    
+        if 'mid_residue' not in df.columns:
+            if ('start_res_zeroindex' in df.columns) and ('end_res_zeroindex' in df.columns):
+                df = df.copy()
+                df['mid_residue'] = (df['start_res_zeroindex'] + df['end_res_zeroindex']) // 2
+            else:
+                raise ValueError("self._subchain_df lacks 'mid_residue' and cannot compute it from start/end subchain indices.")    
+        
+        sel = df[df['mid_residue'].isin(mids)]
+        if sel.empty:
+            raise ValueError(f"No rows found for mid_residue in {mids}.")
+    
+        
+        out = sel[['RSA', 'inst_ratio']].rename(columns={'inst_ratio': 'ratio'}).copy()
+    
+        
+        out['RSA'] = pd.to_numeric(out['RSA'], errors='coerce')
+        out['ratio'] = pd.to_numeric(out['ratio'], errors='coerce')
+        out = out.replace([np.inf, -np.inf], np.nan).dropna(subset=['RSA', 'ratio'])
+        if out.empty:
+            raise ValueError("Selected subchain rows contain no valid RSA/ratio values after cleaning.")
+        if (out['RSA'] < 0).any() or (out['ratio'] < 0).any():
+            raise ValueError("RSA and ratio must be non-negative.")
+    
+        
+        if len(set(mids)) >= 10:
+            print("Warning: plotting many subchains simultaneously may be slow.")
+    
+        
+        out = out.reset_index(drop=True)
+        return self.mod_RSA_Rs_protein_3dplot_against_GW(out, label, 'csv', provided_color)
         
     def calculate_nu_KLL_from_seq_name(self, start_residue, end_residue):
         if self._traj is None:

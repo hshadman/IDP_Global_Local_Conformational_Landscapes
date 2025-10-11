@@ -136,7 +136,11 @@ These are the subchain plots possible:
 - `plot_subchain_Rg_over_Rgtheta()` – plots $⟨R_g / ⟨R_g^\theta⟩⟩$ where $⟨R_g^\theta⟩$ is obtained from the AFRC package (Alston et al. 2023). $⟨R_g^\theta⟩$ is the radius of gyration of a peptide chain if it behaved as an ideal chain, computed directly from sequence.  
 - `plot_subchain_nu()` – plots ν (Flory scaling exponent), using formula used by Tesei et al. 2024.
 
-The output is stored in the attribute _subchain_df. The columns are:
+Additionally, one or more subchains can be selected and their instantaneous (RSA, _Rₛ_) plot generated using:
+
+- `mod_RSA_Rs_compute_3dplot_for_subchain (mid_residues, label)` -  mid_residues is a list or tuple of integers. label is str that labels the provided subchain(s). The _subchain_df attribute includes trajectory data for each subchain that can be identified by its mid_residue.   
+
+The subchain data are stored in the attribute _subchain_df. The columns are:
 
 - `fasta_sequence` – fasta sequence of the subchain.
 - `start_res_zeroindex` – start index of the subchain (zero index format).
