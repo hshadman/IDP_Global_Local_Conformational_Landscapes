@@ -80,9 +80,9 @@ Example usage inside Python or Jupyter is shown in the examples folder.
 Example usage in an interface without graphical display (headless) is shown below:
 
 ```
-# put this at the very top, before importing pyplot
+
 import matplotlib
-matplotlib.use("Agg")  # headless-friendly backend
+matplotlib.use("Agg") 
 
 import matplotlib.pyplot as plt
 import os, pyheteromap
@@ -94,7 +94,7 @@ h = PyHeteroMap("IDR_Example")
 h.set_trajectory("traj1.xtc", "top1.pdb")
 h.initialize_30mer_subchain(FASTA_CSV)
 
-# Generate plots — then save instead of show
+
 h.plot_subchain_RSA(6, 4); plt.savefig("subchain_RSA.png", dpi=300, bbox_inches="tight"); plt.close()
 h.plot_subchain_Rg(6, 4);  plt.savefig("subchain_Rg.png",  dpi=300, bbox_inches="tight"); plt.close()
 h.mod_RSA_Rs_compute_3dplot_from_seq_name("magenta")
