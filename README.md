@@ -70,8 +70,8 @@ For a given IDR trajectory, **_PyHeteroMap_** can generate:
 
 Clone and install locally:
 ```
-git clone https://github.com/hshadman/pyheteromap.git
-cd pyheteromap
+git clone https://github.com/hshadman/IDP_Global_Local_Conformational_Landscapes.git
+cd IDP_Global_Local_Conformational_Landscapes
 python -m pip install -e .
 ```
 
