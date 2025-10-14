@@ -78,7 +78,7 @@ python -m pip install -e .
 
 Example usage inside Python or Jupyter is shown in the examples folder.
 
-NOTE: If the afrc setup fails, please double-check the afrc documentation [here](https://afrc.readthedocs.io/en/latest/overview.html) and [here](https://github.com/idptools/afrc).
+NOTE: If the afrc setup fails, please double-check the afrc documentation [here](https://afrc.readthedocs.io/en/latest/overview.html) and [here](https://github.com/idptools/afrc). The version of afrc used in **_PyHeteroMap_** works with python 3.9.18, but doesnot work with python 3.12 or higher. 
 
 Example usage in an interface without graphical display (headless) is shown below:
 
@@ -103,6 +103,12 @@ h.plot_subchain_Rg(6, 4);  plt.savefig("subchain_Rg.png",  dpi=300, bbox_inches=
 h.mod_RSA_Rs_compute_3dplot_from_seq_name("magenta")
 plt.savefig("RSA_Rs_vs_GW.png", dpi=300, bbox_inches="tight"); plt.close()
 ```
+
+---
+
+## Contact
+
+Please feel free to email me at hossain.shadman17@gmail.com.
 
 ---
 
