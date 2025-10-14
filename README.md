@@ -73,10 +73,12 @@ Clone and install locally:
 ```
 git clone https://github.com/hshadman/IDP_Global_Local_Conformational_Landscapes.git
 cd IDP_Global_Local_Conformational_Landscapes
-python -m pip install -e .
+python -m pip install -e . 
 ```
 
 Example usage inside Python or Jupyter is shown in the examples folder.
+
+NOTE: If the afrc setup fails, please double-check the afrc documentation [here](https://afrc.readthedocs.io/en/latest/overview.html).
 
 Example usage in an interface without graphical display (headless) is shown below:
 
