@@ -67,8 +67,8 @@ PyHeteroMap(
     prmtop_file_dir=None,
     skip_frames=10,
     afrc_returns_angstrom=True,
-    scale=10
-)
+    scale=10)
+    
 ```
 
 **Purpose:**  
