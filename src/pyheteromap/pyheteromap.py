@@ -555,7 +555,7 @@ class PyHeteroMap:
         print('Since MDTraj calculations are in nm units, a conversion variable "scale" is applied.')
         print('If needed, modify the "scale" variable in initialize_30mer_subchain.\n')
         complete_protein_rg_theta_mean = complete_protein_afrc_init.get_mean_radius_of_gyration()
-        scale = self._length_unit_scale if self.afrc_returns_angstrom
+        scale = self._length_unit_scale if self.afrc_returns_angstrom else 1.0
         complete_protein_rg_rg_theta_mean = np.mean((scale*md.compute_rg(traj))/complete_protein_rg_theta_mean)
     
         
