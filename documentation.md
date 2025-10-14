@@ -66,7 +66,8 @@ PyHeteroMap(
     traj_file_dir=None,
     prmtop_file_dir=None,
     skip_frames=10,
-    afrc_returns_angstrom=True
+    afrc_returns_angstrom=True,
+    scale=10
 )
 ```
 
@@ -80,6 +81,7 @@ Initializes the PyHeteroMap object and optionally loads molecular dynamics (MD) 
 - `prmtop_file_dir`: (str, optional) Path to topology file (e.g., `.pdb`).
 - `skip_frames`: (int) Number of frames to skip from the start of trajectory.
 - `afrc_returns_angstrom`: (bool) If True, AnalyticalFRC (AFRC) results are returned in Ångström units.
+- `scale`: (float, optional) Since $⟨R_g^\theta⟩$ is computed in Angstrom units by the AFRC module, the scale parameter needs to be implemented when computing $⟨R_g / ⟨R_g^\theta⟩⟩$. If computing $⟨R_g / ⟨R_g^\theta⟩⟩$, the numerator is multiplied by the scale parameter. Default value of the scale input parameter is 10, as $⟨R_g⟩$ from the IDR trajectories (Tesei et al. 2024) is computed in nm units. 
 
 **Behavior:**  
 If trajectory and topology paths are provided, initializes MDTraj objects.

@@ -19,7 +19,7 @@ class PyHeteroMap:
              gw_reference_csv=DEFAULT_GW_CSV,
              traj_file_dir=None, prmtop_file_dir=None,
              skip_frames=10,
-             afrc_returns_angstrom=True):
+                 afrc_returns_angstrom=True, scale = 10):
     
         self.gw_reference_csv = gw_reference_csv
         print(f'Note: The first {skip_frames} frames in the trajectory were skipped.\n')
@@ -41,6 +41,7 @@ class PyHeteroMap:
         self._last_atom_index = None
         self._subchain_df = None
         self.seq_name = str(seq_name)
+        self._length_unit_scale = scale
         
         if traj_file_dir and prmtop_file_dir:
             self.set_trajectory(traj_file_dir, prmtop_file_dir)
@@ -99,7 +100,8 @@ class PyHeteroMap:
         self._is_all_atom = (t.topology.n_atoms != t.topology.n_residues)
         self._nu_enabled = not self._is_all_atom
         if self._is_all_atom:
-            print("Warning: n_atoms != n_residues. ν calculation will be skipped. End-to-end distance may be slightly off.")
+            print("Warning: n_atoms != n_residues. ν calculation will be skipped. End-to-end distance may be slightly off.\n")
+            print("If computing ⟨R₍g₎ / ⟨R₍g₎ᶿ⟩⟩, please also ensure scale (input parameter provided at initialization step, default 10) is accurate. Since AFRC computes ⟨R₍g₎ᶿ⟩ in Angstrom units, the scale parameter ensures the unit of the computed ⟨R₍g₎⟩ is consistent. ⟨R₍g₎ / ⟨R₍g₎ᶿ⟩⟩ is computed as ⟨R₍g₎* scale / ⟨R₍g₎ᶿ⟩⟩ to normalize units. When ⟨R₍g₎⟩ is in nm, the scale is expected to be 10.")
 
     
         
@@ -553,7 +555,7 @@ class PyHeteroMap:
         print('Since MDTraj calculations are in nm units, a conversion variable "scale" is applied.')
         print('If needed, modify the "scale" variable in initialize_30mer_subchain.\n')
         complete_protein_rg_theta_mean = complete_protein_afrc_init.get_mean_radius_of_gyration()
-        scale = 10.0 if self.afrc_returns_angstrom else 1.0
+        scale = self._length_unit_scale if self.afrc_returns_angstrom else 1.0
         complete_protein_rg_rg_theta_mean = np.mean((scale*md.compute_rg(traj))/complete_protein_rg_theta_mean)
     
         
