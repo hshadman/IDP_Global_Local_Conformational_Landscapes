@@ -25,7 +25,9 @@ class PyHeteroMap:
         print(f'Note: The first {skip_frames} frames in the trajectory were skipped.\n')
         self.skip_frames = skip_frames
         self.afrc_returns_angstrom = afrc_returns_angstrom
-
+        
+        self._is_all_atom = None
+        self._nu_enabled = True
         self.gw_df = None     
     
         self.protein_df = None
@@ -94,8 +96,10 @@ class PyHeteroMap:
         self._last_atom_index  = t.topology.select(f"residue {self._n_residues - 1}")[0]
         self._ree_series_nm = md.compute_distances(self._traj,atom_pairs= [[self._first_atom_index, self._last_atom_index]]).flatten()
         self._subchain_df = None
-        if self._traj.topology.n_atoms != self._traj.topology.n_residues:
-            print("Warning: n_atoms is not equal to n_residues. Careful about the meaning of ν.")
+        self._is_all_atom = (t.topology.n_atoms != t.topology.n_residues)
+        self._nu_enabled = not self._is_all_atom
+        if self._is_all_atom:
+            print("Warning: n_atoms != n_residues. ν calculation will be skipped. Interpret end-to-end distance cautiously.")
 
     
         
@@ -254,7 +258,7 @@ class PyHeteroMap:
         testeq_GW = self.gw_df
         
         nu_val = None
-        if second_obj == 'protein':  
+        if second_obj == 'protein' and self._nu_enabled:  
             if getattr(self, "_traj", None) is None:
                 raise RuntimeError("Trajectory not set. Call set_trajectory(...) before using trajectory-based plotting.")
             nu_val, nu_err = self.calculate_nu_KLL_from_seq_name(1, self._n_residues)
@@ -685,6 +689,8 @@ class PyHeteroMap:
         return self.mod_RSA_Rs_protein_3dplot_against_GW(out, label, 'csv', provided_color)
         
     def calculate_nu_KLL_from_seq_name(self, start_residue, end_residue):
+        if not self._nu_enabled:
+            return np.nan, np.nan
         if self._traj is None:
             raise RuntimeError("Call set_trajectory(traj_file, prmtop_file) before this method.")
         t_md = self._traj
@@ -1094,6 +1100,8 @@ class PyHeteroMap:
         PyHeteroMap._subchain_Rg_Rg_theta_mean_plot(self._subchain_df, figwidth, figheight)
     
     def plot_subchain_nu(self, figwidth, figheight):
+        if not self._nu_enabled:
+            raise RuntimeError("ν is disabled for trajectories with n_residues != n_atoms (not computed).")
         if self._subchain_df is None:
             raise RuntimeError("No subchain data. Call initialize_30mer_subchain(fasta_source, k_frac=...) first.")
         PyHeteroMap._subchain_nu_plot(self._subchain_df, figwidth, figheight)
