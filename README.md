@@ -78,7 +78,7 @@ python -m pip install -e .
 
 Example usage inside Python or Jupyter is shown in the examples folder.
 
-NOTE: If the afrc setup fails, please double-check the afrc documentation [here](https://afrc.readthedocs.io/en/latest/overview.html) and (here)[https://github.com/idptools/afrc].
+NOTE: If the afrc setup fails, please double-check the afrc documentation [here](https://afrc.readthedocs.io/en/latest/overview.html) and [here](https://github.com/idptools/afrc).
 
 Example usage in an interface without graphical display (headless) is shown below:
 
