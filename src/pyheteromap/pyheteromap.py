@@ -88,7 +88,7 @@ class PyHeteroMap:
         self._traj = t[self.skip_frames:]
         self._n_residues = t.topology.n_residues
         print('Note: The code as written is for CG simulations (one "bead" per amino acid residue).\n')
-        print('If all-atom, users may want CA atoms instead,')
+        print('If all-atom, users may want to use CA atoms instead, to compute end-to-end distances,')
         print('by making the below modification in set_trajectory and inside the loop in initialize_30mer_subchain, if also examining subchains:\n')
         print('self._first_atom_index = t.topology.select("name CA and residue 0")[0]')
         print('self._last_atom_index  = t.topology.select(f"name CA and residue {self._n_residues - 1}")[0]\n')
@@ -99,7 +99,7 @@ class PyHeteroMap:
         self._is_all_atom = (t.topology.n_atoms != t.topology.n_residues)
         self._nu_enabled = not self._is_all_atom
         if self._is_all_atom:
-            print("Warning: n_atoms != n_residues. ν calculation will be skipped. Interpret end-to-end distance cautiously.")
+            print("Warning: n_atoms != n_residues. ν calculation will be skipped. End-to-end distance may be slightly off.")
 
     
         

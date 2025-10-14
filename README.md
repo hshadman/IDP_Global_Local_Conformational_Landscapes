@@ -13,7 +13,7 @@ For a given intrinsically disordered protein (IDP) or region (IDR) of a protein:
 - **Global conformational ensembles:** can be examined by generating a scatter plot of (instantaneous) _R<sub>s</sub>_ against RSA of the full chain.  
 - **Local conformational ensembles:** can be examined by using a moving/sliding window across the chain and monitoring ⟨_R<sub>s</sub>_⟩, ⟨RSA⟩ and other polymer properties of each subchain. Local ensembles can also be examined by generating a scatter plot of (instantaneous) _R<sub>s</sub>_ against RSA of one or more subchain trajectories. 
 
-The Gaussian Walk (GW) polymer model, which is not restricted by excluded volume or other types of interactions, can provide a reference ensemble for the conformational ensembles of other proteins and polymers, as we previously demonstrated ([Biophysical Journal (2024)](https://www.cell.com/biophysj/fulltext/S0006-3495(24)00272-8)).
+The Gaussian Walk (GW) polymer model, which is not restricted by excluded volume or other types of interactions, can provide a reference ensemble for the conformational ensembles of other proteins and polymers, as was previously demonstrated ([Biophysical Journal (2024)](https://www.cell.com/biophysj/fulltext/S0006-3495(24)00272-8)).
 
 ---
 
