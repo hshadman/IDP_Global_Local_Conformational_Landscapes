@@ -87,11 +87,11 @@ class PyHeteroMap:
         self._traj_full = t
         self._traj = t[self.skip_frames:]
         self._n_residues = t.topology.n_residues
-        print('The code as written is for CG simulations (one "bead" per amino acid residue).\n')
-        print('If all-atom, users may want CA atoms instead:\n')
+        print('Note: The code as written is for CG simulations (one "bead" per amino acid residue).\n')
+        print('If all-atom, users may want CA atoms instead,')
+        print('by making the below modification in set_trajectory and inside the loop in initialize_30mer_subchain, if also examining subchains:\n')
         print('self._first_atom_index = t.topology.select("name CA and residue 0")[0]')
         print('self._last_atom_index  = t.topology.select(f"name CA and residue {self._n_residues - 1}")[0]\n')
-        print('Modify accordingly in set_trajectory and inside the subchain loop in initialize_30mer_subchain.')
         self._first_atom_index = t.topology.select(f"residue {0}")[0]
         self._last_atom_index  = t.topology.select(f"residue {self._n_residues - 1}")[0]
         self._ree_series_nm = md.compute_distances(self._traj,atom_pairs= [[self._first_atom_index, self._last_atom_index]]).flatten()
