@@ -82,7 +82,7 @@ python -m pip install -e .
 
 Example usage inside Python or Jupyter is shown in the examples folder.
 
-NOTE: If the afrc setup fails, please double-check the afrc documentation [here](https://afrc.readthedocs.io/en/latest/overview.html) and [here](https://github.com/idptools/afrc). The version of afrc used in **_PyHeteroMap_** works with Python 3.9.18, but does not work with Python >= 3.12.
+NOTE: If the afrc setup fails, please double-check the afrc documentation [here](https://afrc.readthedocs.io/en/latest/overview.html) and [here](https://github.com/idptools/afrc). The version of afrc used in **_PyHeteroMap_** works with Python 3.9.18, but does not work with Python >= 3.12. All dependencies are listed in pyproject.toml.
 
 Example usage in an interface without graphical display (headless) is shown below:
 
