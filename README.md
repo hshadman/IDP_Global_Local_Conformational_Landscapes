@@ -1,5 +1,9 @@
 ![Tests](https://github.com/hshadman/IDP_Global_Local_Conformational_Landscapes/actions/workflows/tests.yml/badge.svg)
 
+<p align="center">
+  <img src="github_pyheteromap_pic.svg" alt="PyHeteroMap overview" width="600"/>
+</p>
+
 # **_PyHeteroMap_:** A Companion Package for Resolving Local and Global Conformational Heterogeneity of the Human Intrinsically Disordered Proteome Using (RSA, _R<sub>s</sub>_) Maps
 
 ---
