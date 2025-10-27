@@ -50,7 +50,7 @@ For a given IDR trajectory, **_PyHeteroMap_** can generate:
 
 - Two such human IDR simulations are included as examples in the `examples/` folder.
 - Each IDR has a unique identifier or seq_name.
-- (RSA, _R<sub>s</sub>_) plots can be generated without needing a trajectory, if a csv file containing (RSA, _R<sub>s</sub>_) data (see examples).
+- (RSA, _R<sub>s</sub>_) plots can be generated without needing a trajectory, if a csv file containing (RSA, _R<sub>s</sub>_) data is provided (see examples).
 - Should work for other types of trajectories as well.
 - Trajectory analysis is performed using **MDTraj**.  
 - **_PyHeteroMap_** can also simulate new **Gaussian Walk (GW)** chains of any chain length and number of snapshots.
