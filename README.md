@@ -39,7 +39,7 @@ For a given IDR trajectory, **_PyHeteroMap_** can generate:
 3. **Local (RSA, _R<sub>s</sub>_) plots**  
    - For one or more selected subchains of an IDR, (RSA, _R<sub>s</sub>_) scatter plots can be generated (see examples).
 
-**_PyHeteroMap_** can additionally simulate new **Gaussian Walk (GW)** chains of any chain length and any number of snapshots.
+**_PyHeteroMap_** can additionally simulate new Gaussian Walk (GW) chains of any chain length and any number of snapshots.
 
 (RSA, _R<sub>s</sub>_) scatter plots can be generated directly from a csv file containing (RSA, _R<sub>s</sub>_) data (no trajectory needed) (see examples).  
 
@@ -54,8 +54,8 @@ For a given IDR trajectory, **_PyHeteroMap_** can generate:
 - Each IDR has a unique identifier or seq_name.
 - (RSA, _R<sub>s</sub>_) plots can be generated without needing a trajectory, if a csv file containing (RSA, _R<sub>s</sub>_) data is provided (see examples).
 - Should work for other types of trajectories as well.
-- Trajectory analysis is performed using **MDTraj**.  
-- **_PyHeteroMap_** can also simulate new **Gaussian Walk (GW)** chains of any chain length and number of snapshots.
+- Trajectory analysis is performed using MDTraj.  
+- **_PyHeteroMap_** can also simulate new Gaussian Walk (GW) chains of any chain length and number of snapshots.
 
 
 
