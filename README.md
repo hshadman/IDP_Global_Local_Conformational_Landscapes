@@ -4,7 +4,7 @@
   <img src=".github/images/github_pyheteromap_pic.svg" alt="PyHeteroMap overview" width="600"/>
 </p>
 
-<span style="font-size: 26px;">**_PyHeteroMap_**: A Companion Package for *Resolving Local and Global Conformational Heterogeneity of the Human Intrinsically Disordered Proteome*</span>
+<span style="font-size: 90px;">**_PyHeteroMap_**: A Companion Package for *Resolving Local and Global Conformational Heterogeneity of the Human Intrinsically Disordered Proteome*</span>
 
 
 **_PyHeteroMap_:** A Companion Package for *Resolving Local and Global Conformational Heterogeneity of the Human Intrinsically Disordered Proteome* 
