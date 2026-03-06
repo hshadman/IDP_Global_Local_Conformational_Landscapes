@@ -1,3 +1,4 @@
+[![DOI](https://zenodo.org/badge/1034166067.svg)](https://doi.org/10.5281/zenodo.18894873)
 ![Tests](https://github.com/hshadman/IDP_Global_Local_Conformational_Landscapes/actions/workflows/tests.yml/badge.svg)
 
 <p align="center">
