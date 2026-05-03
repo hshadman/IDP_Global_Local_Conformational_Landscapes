@@ -168,7 +168,7 @@ class PyHeteroMap:
     
     @staticmethod
     def RSA_based_fC(protein_var,protein_name,poly_id,
-                           GW_moment_var,every_ith_snap,GW_every_ith_snap,radius_):
+                           GW_moment_var,every_ith_snap,GW_every_ith_snap,radius_, upto_snapshots=1000000):
         x_total=[]
         y_total=[]
         if poly_id in ('protein','csv'):
@@ -215,7 +215,7 @@ class PyHeteroMap:
         #calculate mean and stdev values for data transformation on the scatter plot
         # Mean and standard deviation for GW are calculated using 1000000 snapshots.
         #If you wish to change that, just change upto_snapshots.
-        upto_snapshots=1000000
+        #upto_snapshots=1000000
         GW_mean_ratio=np.mean(GW_po['ratio'].values[0:(upto_snapshots+1)])
         GW_std_ratio=np.std(GW_po['ratio'].values[0:(upto_snapshots+1)])
         GW_mean_RSA=np.mean(GW_po['RSA'].values[0:(upto_snapshots+1)])
@@ -290,7 +290,7 @@ class PyHeteroMap:
                            protein_label,
                            second_obj,testeq_GW,
                            temp_protein.shape[0],
-                           1,0.1)            
+                           1,0.1,upto_snapshots=len(testeq_GW))            
             del temp_protein
         else:
             raise ValueError("second_obj must be 'protein' or 'csv'")
