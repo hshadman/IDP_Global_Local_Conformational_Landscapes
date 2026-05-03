@@ -119,9 +119,7 @@ plt.savefig("RSA_Rs_vs_GW.png", dpi=300, bbox_inches="tight"); plt.close()
 
 ## License
 
-This project is distributed under the Academic Research License.
-The software may be used for academic and research purposes only.  
-See the [LICENSE](LICENSE) file for the complete license terms.
+This project is distributed under the Academic Research License. The software may be used for academic and research purposes only. See the [LICENSE](LICENSE) file for the complete license terms.
 
 ---
 
