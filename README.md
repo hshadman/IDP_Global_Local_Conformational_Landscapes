@@ -30,7 +30,7 @@ For a given IDR trajectory, **_PyHeteroMap_** can generate:
 
 1. **Global (RSA, _R<sub>s</sub>_) scatter plots**  
    - Compare an IDR/peptide conformational landscape against that of a Gaussian Walk (GW) reference.  
-   - Compute metrics such as the f<sub>C_shape</sub> score that quantify its conformational diversity.
+   - Compute metrics such as the f<sub>C_shape</sub> score that quantify its conformational diversity (as observed in the simulation).
    - Compute ν (the Flory scaling exponent) ([Tesei et al. (2024), *Nature*](https://www.nature.com/articles/s41586-023-07004-5)).
 
 
